@@ -1,0 +1,591 @@
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\appsettings.Development.json
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\appsettings.json
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Billing_Software.staticwebassets.runtime.json
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Billing_Software.staticwebassets.endpoints.json
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Billing_Software.exe
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Billing_Software.deps.json
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Billing_Software.runtimeconfig.json
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Billing_Software.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Billing_Software.pdb
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\rpswa.dswa.cache.json
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\Billing_Software.GeneratedMSBuildEditorConfig.editorconfig
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\Billing_Software.AssemblyInfoInputs.cache
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\Billing_Software.AssemblyInfo.cs
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\Billing_Software.csproj.CoreCompileInputs.cache
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\Billing_Software.MvcApplicationPartsAssemblyInfo.cache
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\Billing_Software.RazorAssemblyInfo.cache
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\Billing_Software.RazorAssemblyInfo.cs
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\rjimswa.dswa.cache.json
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\scopedcss\bundle\Billing_Software.styles.css
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\scopedcss\projectbundle\Billing_Software.bundle.scp.css
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\jhrppm448e-61n19gt1b8.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\lbaphw3br2-bqjiyaj88i.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\fgihkh1xku-c2jlpeoesf.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\5ytx1rq01b-erw9l3u2r3.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\2c86xtbiwp-aexeepp0ev.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\av8p7a8av5-d7shbmvgxk.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\4sez40mvoa-ausgxo2sd3.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\barvqn3jif-k8d9w2qqmf.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\ox8o9t8lzp-cosvhxvwiu.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\deoezva4xs-ub07r2b239.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\9cngnic1wz-fvhpjtyr6v.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\ewp1pinfge-b7pk76d08c.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\j0rx0limlb-fsbi9cje9m.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\7yg08owmjm-rzd6atqjts.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\p0phfv5xck-ee0r1s7dh0.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\pzhuhut7a3-dxx9fxp4il.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\mj7hxoatpk-jd9uben2k1.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\vlr5xo340f-khv3u5hwcm.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\hahduwj0mu-r4e9w2rdcm.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\dt359xmlds-lcd1t2u6c8.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\ylpieti392-c2oey78nd0.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\570mx09yzq-tdbxkamptv.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\7ighzubo2w-j5mq2jizvt.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\5k1bbb9uy9-06098lyss8.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\iswdk0yqsz-nvvlpmu67g.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\7c4qwwey2w-s35ty4nyc5.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\v86itj479k-pj5nd1wqec.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\9fv6q380f3-46ein0sx1k.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\0qqcrp9wnl-v0zj4ognzu.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\xjrpgbhliy-37tfw0ft22.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\t3inbjispv-hrwsygsryq.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\gome10d698-pk9g2wxc8p.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\091z31oyz7-ft3s53vfgj.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\85bs1v4ooq-6cfz1n2cew.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\la1wr3cqn2-6pdc2jztkx.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\x2pz65tnff-493y06b0oq.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\b82cv42bie-iovd86k7lj.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\pfgxezta1w-vr1egmr9el.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\2lok9jwtxt-kbrnm935zg.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\aedcso5aw0-jj8uyg4cgr.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\jd9oqy9iz5-y7v9cxd14o.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\iyz1dlp0aw-notf2xhcfb.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\9tq78a13m9-h1s4sie4z3.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\mo1g09l5lp-63fj8s7r0e.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\74nxtpo2as-0j3bgjxly4.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\mztuvfh0ca-47otxtyo56.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\9is60wtrw4-4v8eqarkd7.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\0o92ko7ykp-356vix0kms.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\s8vxoqkb6r-83jwlth58m.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\yvl5a4ntmb-mrlpezrjn3.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\9yr9tqf3uj-lzl9nlhx6b.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\tk4w8k932j-ag7o75518u.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\5ypaz5xnz1-x0q3zqp4vz.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\hgbj13afl6-0i3buxo5is.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\nw9q8ik2i6-o1o13a6vjx.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\m2rycgw259-ttgo8qnofa.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\u8vh8nq8bq-2z0ns9nrw6.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\uwk1vy3lvn-muycvpuwrr.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\nj756nz3w3-87fc7y1x7t.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\p6yucq8cm0-mlv21k5csn.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\l3j0ssxc6w-piz3y5666m.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\29ac71m53d-piz3y5666m.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\staticwebassets.build.json
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\staticwebassets.build.json.cache
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\staticwebassets.development.json
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\Billing_Software.dll
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\refint\Billing_Software.dll
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\Billing_Software.pdb
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\Billing_Software.genruntimeconfig.cache
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\ref\Billing_Software.dll
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\Billing_Software.csproj.AssemblyReference.cache
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\Billing_Software.MvcApplicationPartsAssemblyInfo.cs
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Azure.Core.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Azure.Identity.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\DinkToPdf.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Humanizer.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.UI.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.Build.Locator.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.CodeAnalysis.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.Data.SqlClient.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.Identity.Client.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.SqlServer.Server.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Mono.TextTemplating.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\Newtonsoft.Json.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\SendGrid.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\StarkbankEcdsa.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.ClientModel.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.CodeDom.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.Composition.AttributedModel.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.Composition.Convention.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.Composition.Hosting.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.Composition.Runtime.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.Composition.TypedParts.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.Drawing.Common.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.Memory.Data.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.Runtime.Caching.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.Security.Permissions.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\System.Windows.Extensions.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\Billing Software\Billing_Software\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\ofa40bqe71-b9sayid5wm.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\j9swiz3yzq-90yqlj465b.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\vltxs1u3vm-xtxxf3hu2r.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\14ipv7q33s-bqjiyaj88i.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\rh65p086id-c2jlpeoesf.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\eb27mqwgz2-erw9l3u2r3.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\9glsckmvxo-aexeepp0ev.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\hh8ihyobdx-d7shbmvgxk.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\bww8ud00yd-ausgxo2sd3.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\edcrak57d7-k8d9w2qqmf.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\sf8kf2lula-cosvhxvwiu.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\3tzsqhslk9-ub07r2b239.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\oxk5o6czdw-fvhpjtyr6v.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\k8b25g0zwc-b7pk76d08c.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\8axix7wldr-fsbi9cje9m.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\d5z9sfpxbi-rzd6atqjts.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\u8428c4e9i-ee0r1s7dh0.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\tg53r17ghy-dxx9fxp4il.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\nlrl0f3xs3-jd9uben2k1.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\1fc4q00scq-khv3u5hwcm.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\8xykfy6qmd-r4e9w2rdcm.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\vsrbd71spn-lcd1t2u6c8.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\cynp17w084-c2oey78nd0.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\7o8oyvng68-tdbxkamptv.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\h9vwtoirpy-j5mq2jizvt.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\o5k23vqhrk-06098lyss8.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\iznc766avz-nvvlpmu67g.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\ns4583i71s-s35ty4nyc5.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\47012z8l2l-pj5nd1wqec.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\4vzefxwp2m-46ein0sx1k.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\bh4v3mdph9-v0zj4ognzu.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\l186vlgaag-37tfw0ft22.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\rsc7qacj1u-hrwsygsryq.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\z408qb6q7a-pk9g2wxc8p.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\qfr28sqcy1-ft3s53vfgj.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\0k1i85ntyh-6cfz1n2cew.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\xa379ftczi-6pdc2jztkx.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\lr5hmrr0j7-493y06b0oq.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\ivy2s9gwh5-iovd86k7lj.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\higufxz8op-vr1egmr9el.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\s3tglgz8hr-kbrnm935zg.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\vw9sls9bhj-jj8uyg4cgr.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\ym8tkpcl2i-y7v9cxd14o.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\zzna4nrm5w-notf2xhcfb.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\igscs4x0yk-h1s4sie4z3.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\zap00c0tb5-63fj8s7r0e.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\pogzkicjpz-0j3bgjxly4.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\j3hwsq15kh-47otxtyo56.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\q3naettu8c-4v8eqarkd7.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\ldxy2n3w6q-356vix0kms.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\ypthv7q62w-83jwlth58m.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\t6e3b82hrf-mrlpezrjn3.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\uocis9wxbx-lzl9nlhx6b.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\2tikzqlmtu-ag7o75518u.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\9muusbdg0a-x0q3zqp4vz.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\tpsq5dibur-0i3buxo5is.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\t0qo7o574p-o1o13a6vjx.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\b9lhb08218-ttgo8qnofa.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\a3ygkwa5zy-2z0ns9nrw6.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\nezrqnk58p-muycvpuwrr.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\v0zgfp0y55-87fc7y1x7t.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\yfc7ypekbg-mlv21k5csn.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\bas9qp3a75-a9uktrylwr.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\compressed\yawym1pjkk-qkjwztdvbl.gz
+D:\Billing Software\Billing_Software\obj\Debug\net9.0\Billing_.1865402A.Up2Date
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\Billing_Software.csproj.AssemblyReference.cache
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\rpswa.dswa.cache.json
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\Billing_Software.GeneratedMSBuildEditorConfig.editorconfig
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\Billing_Software.AssemblyInfoInputs.cache
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\Billing_Software.AssemblyInfo.cs
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\Billing_Software.csproj.CoreCompileInputs.cache
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\Billing_Software.MvcApplicationPartsAssemblyInfo.cs
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\Billing_Software.MvcApplicationPartsAssemblyInfo.cache
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\Billing_Software.RazorAssemblyInfo.cache
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\Billing_Software.RazorAssemblyInfo.cs
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\Billing_Software.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\refint\Billing_Software.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\Billing_Software.pdb
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\appsettings.Development.json
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\appsettings.json
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Billing_Software.staticwebassets.runtime.json
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Billing_Software.staticwebassets.endpoints.json
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Billing_Software.exe
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Billing_Software.deps.json
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Billing_Software.runtimeconfig.json
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Billing_Software.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Billing_Software.pdb
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Azure.Core.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Azure.Identity.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\DinkToPdf.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Humanizer.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.UI.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.Build.Locator.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.CodeAnalysis.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.Data.SqlClient.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.Identity.Client.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.SqlServer.Server.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Mono.TextTemplating.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Newtonsoft.Json.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\SendGrid.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\StarkbankEcdsa.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.ClientModel.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.CodeDom.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.Composition.AttributedModel.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.Composition.Convention.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.Composition.Hosting.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.Composition.Runtime.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.Composition.TypedParts.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.Drawing.Common.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.Memory.Data.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.Runtime.Caching.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.Security.Permissions.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\System.Windows.Extensions.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\rjimswa.dswa.cache.json
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\scopedcss\bundle\Billing_Software.styles.css
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\scopedcss\projectbundle\Billing_Software.bundle.scp.css
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\ofa40bqe71-b9sayid5wm.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\j9swiz3yzq-90yqlj465b.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\vltxs1u3vm-xtxxf3hu2r.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\14ipv7q33s-bqjiyaj88i.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\rh65p086id-c2jlpeoesf.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\eb27mqwgz2-erw9l3u2r3.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\9glsckmvxo-aexeepp0ev.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\hh8ihyobdx-d7shbmvgxk.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\bww8ud00yd-ausgxo2sd3.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\edcrak57d7-k8d9w2qqmf.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\sf8kf2lula-cosvhxvwiu.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\3tzsqhslk9-ub07r2b239.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\oxk5o6czdw-fvhpjtyr6v.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\k8b25g0zwc-b7pk76d08c.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\8axix7wldr-fsbi9cje9m.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\d5z9sfpxbi-rzd6atqjts.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\u8428c4e9i-ee0r1s7dh0.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\tg53r17ghy-dxx9fxp4il.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\nlrl0f3xs3-jd9uben2k1.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\1fc4q00scq-khv3u5hwcm.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\8xykfy6qmd-r4e9w2rdcm.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\vsrbd71spn-lcd1t2u6c8.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\cynp17w084-c2oey78nd0.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\7o8oyvng68-tdbxkamptv.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\h9vwtoirpy-j5mq2jizvt.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\o5k23vqhrk-06098lyss8.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\iznc766avz-nvvlpmu67g.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\ns4583i71s-s35ty4nyc5.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\47012z8l2l-pj5nd1wqec.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\4vzefxwp2m-46ein0sx1k.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\bh4v3mdph9-v0zj4ognzu.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\l186vlgaag-37tfw0ft22.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\rsc7qacj1u-hrwsygsryq.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\z408qb6q7a-pk9g2wxc8p.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\qfr28sqcy1-ft3s53vfgj.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\0k1i85ntyh-6cfz1n2cew.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\xa379ftczi-6pdc2jztkx.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\lr5hmrr0j7-493y06b0oq.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\ivy2s9gwh5-iovd86k7lj.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\higufxz8op-vr1egmr9el.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\s3tglgz8hr-kbrnm935zg.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\vw9sls9bhj-jj8uyg4cgr.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\ym8tkpcl2i-y7v9cxd14o.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\zzna4nrm5w-notf2xhcfb.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\igscs4x0yk-h1s4sie4z3.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\zap00c0tb5-63fj8s7r0e.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\pogzkicjpz-0j3bgjxly4.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\j3hwsq15kh-47otxtyo56.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\q3naettu8c-4v8eqarkd7.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\ldxy2n3w6q-356vix0kms.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\ypthv7q62w-83jwlth58m.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\t6e3b82hrf-mrlpezrjn3.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\uocis9wxbx-lzl9nlhx6b.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\2tikzqlmtu-ag7o75518u.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\9muusbdg0a-x0q3zqp4vz.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\tpsq5dibur-0i3buxo5is.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\t0qo7o574p-o1o13a6vjx.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\b9lhb08218-ttgo8qnofa.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\a3ygkwa5zy-2z0ns9nrw6.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\nezrqnk58p-muycvpuwrr.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\v0zgfp0y55-87fc7y1x7t.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\yfc7ypekbg-mlv21k5csn.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\jhrppm448e-61n19gt1b8.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\lbaphw3br2-bqjiyaj88i.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\fgihkh1xku-c2jlpeoesf.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\5ytx1rq01b-erw9l3u2r3.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\2c86xtbiwp-aexeepp0ev.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\av8p7a8av5-d7shbmvgxk.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\4sez40mvoa-ausgxo2sd3.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\barvqn3jif-k8d9w2qqmf.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\ox8o9t8lzp-cosvhxvwiu.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\deoezva4xs-ub07r2b239.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\9cngnic1wz-fvhpjtyr6v.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\ewp1pinfge-b7pk76d08c.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\j0rx0limlb-fsbi9cje9m.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\7yg08owmjm-rzd6atqjts.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\p0phfv5xck-ee0r1s7dh0.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\pzhuhut7a3-dxx9fxp4il.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\mj7hxoatpk-jd9uben2k1.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\vlr5xo340f-khv3u5hwcm.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\hahduwj0mu-r4e9w2rdcm.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\dt359xmlds-lcd1t2u6c8.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\ylpieti392-c2oey78nd0.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\570mx09yzq-tdbxkamptv.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\7ighzubo2w-j5mq2jizvt.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\5k1bbb9uy9-06098lyss8.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\iswdk0yqsz-nvvlpmu67g.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\7c4qwwey2w-s35ty4nyc5.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\v86itj479k-pj5nd1wqec.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\9fv6q380f3-46ein0sx1k.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\0qqcrp9wnl-v0zj4ognzu.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\xjrpgbhliy-37tfw0ft22.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\t3inbjispv-hrwsygsryq.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\gome10d698-pk9g2wxc8p.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\091z31oyz7-ft3s53vfgj.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\85bs1v4ooq-6cfz1n2cew.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\la1wr3cqn2-6pdc2jztkx.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\x2pz65tnff-493y06b0oq.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\b82cv42bie-iovd86k7lj.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\pfgxezta1w-vr1egmr9el.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\2lok9jwtxt-kbrnm935zg.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\aedcso5aw0-jj8uyg4cgr.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\jd9oqy9iz5-y7v9cxd14o.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\iyz1dlp0aw-notf2xhcfb.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\9tq78a13m9-h1s4sie4z3.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\mo1g09l5lp-63fj8s7r0e.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\74nxtpo2as-0j3bgjxly4.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\mztuvfh0ca-47otxtyo56.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\9is60wtrw4-4v8eqarkd7.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\0o92ko7ykp-356vix0kms.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\s8vxoqkb6r-83jwlth58m.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\yvl5a4ntmb-mrlpezrjn3.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\9yr9tqf3uj-lzl9nlhx6b.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\tk4w8k932j-ag7o75518u.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\5ypaz5xnz1-x0q3zqp4vz.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\hgbj13afl6-0i3buxo5is.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\nw9q8ik2i6-o1o13a6vjx.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\m2rycgw259-ttgo8qnofa.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\u8vh8nq8bq-2z0ns9nrw6.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\uwk1vy3lvn-muycvpuwrr.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\nj756nz3w3-87fc7y1x7t.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\p6yucq8cm0-mlv21k5csn.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\staticwebassets.build.json
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\staticwebassets.build.json.cache
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\staticwebassets.development.json
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\Billing_.1865402A.Up2Date
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\Billing_Software.genruntimeconfig.cache
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\ref\Billing_Software.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\bas9qp3a75-by4fq1p8yh.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\yawym1pjkk-s8h4s27v32.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\l3j0ssxc6w-3bogbz5vbn.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\obj\Debug\net9.0\compressed\29ac71m53d-3bogbz5vbn.gz
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\EPPlus.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\EPPlus.Interfaces.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\EPPlus.System.Drawing.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\Microsoft.IO.RecyclableMemoryStream.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\selenium-manager\linux\selenium-manager
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\selenium-manager\macos\selenium-manager
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\selenium-manager\windows\selenium-manager.exe
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\WebDriver.Support.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\WebDriver.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\iTextSharp.LGPLv2.Core.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\SkiaSharp.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\osx\native\libSkiaSharp.dylib
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\win-arm64\native\libSkiaSharp.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\win-x64\native\libSkiaSharp.dll
+D:\Billing Software\Billing_Software V2\Billing_Software\bin\Debug\net9.0\runtimes\win-x86\native\libSkiaSharp.dll

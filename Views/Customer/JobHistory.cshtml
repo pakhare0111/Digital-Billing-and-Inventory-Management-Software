@@ -1,0 +1,306 @@
+@model IEnumerable<Billing_Software.Models.CustomerJobList>
+@{
+    ViewData["Title"] = "Job History";
+    var customerId = Model.FirstOrDefault()?.CustomerId ?? 0;
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="h4 mb-1 fw-bold text-dark">Job History</h2>
+        <p class="text-muted small mb-0">View detailed job history and timeline</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="@Url.Action("Jobs", "Customer", new { id = customerId })" class="btn btn-primary btn-sm">
+            <i class="bi bi-clipboard-list me-2"></i>Back to Jobs
+        </a>
+        <a href="@Url.Action("Details", "Customer", new { id = customerId })" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left me-2"></i>Back to Customer
+        </a>
+    </div>
+</div>
+
+<!-- Job History Summary -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-transparent border-0 pb-0">
+        <h6 class="mb-0 fw-bold">
+            <i class="bi bi-graph-up text-primary me-2"></i>Job History Summary
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body text-center p-3">
+                        <h4 class="mb-1 fw-bold">@Model.Count()</h4>
+                        <p class="small mb-0">Total Jobs</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body text-center p-3">
+                        <h4 class="mb-1 fw-bold">@Model.Count(j => j.IsCompleted)</h4>
+                        <p class="small mb-0">Completed</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body text-center p-3">
+                        <h4 class="mb-1 fw-bold">@Model.Count(j => j.IsInvoiced)</h4>
+                        <p class="small mb-0">Invoiced</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body text-center p-3">
+                        <h4 class="mb-1 fw-bold">@Model.Count(j => j.IsResetForNewVisit)</h4>
+                        <p class="small mb-0">Reset</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Job History Table -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-transparent border-0 pb-0">
+        <h6 class="mb-0 fw-bold">
+            <i class="bi bi-table text-primary me-2"></i>Detailed Job History
+        </h6>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="border-0 small">Job Name</th>
+                        <th class="border-0 small">Description</th>
+                        <th class="border-0 small">Price</th>
+                        <th class="border-0 small">Status</th>
+                        <th class="border-0 small">Created</th>
+                        <th class="border-0 small">Completed</th>
+                        <th class="border-0 small">Invoiced</th>
+                        <th class="border-0 small">Reset</th>
+                        <th class="border-0 small">Invoice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderByDescending(j => j.CreatedDate))
+                    {
+                        <tr>
+                            <td class="py-2"><strong>@item.JobList.JobName</strong></td>
+                            <td class="py-2 small">@item.JobList.Description</td>
+                            <td class="py-2 fw-bold">$@item.JobList.Price.ToString("F2")</td>
+                            <td class="py-2">
+                                @if (item.IsCompleted)
+                                {
+                                    <span class="badge bg-success rounded-pill small">Completed</span>
+                                }
+                                else if (item.IsInvoiced)
+                                {
+                                    <span class="badge bg-info rounded-pill small">Invoiced</span>
+                                }
+                                else if (item.IsSelected)
+                                {
+                                    <span class="badge bg-warning rounded-pill small">Selected</span>
+                                }
+                                else if (item.IsResetForNewVisit)
+                                {
+                                    <span class="badge bg-secondary rounded-pill small">Reset</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-light text-dark rounded-pill small">Available</span>
+                                }
+                            </td>
+                            <td class="py-2 small">@item.CreatedDate.ToString("MMM dd, yyyy")</td>
+                            <td class="py-2">
+                                @if (item.CompletedDate.HasValue)
+                                {
+                                    <span class="text-success small">@item.CompletedDate.Value.ToString("MMM dd, yyyy")</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted small">-</span>
+                                }
+                            </td>
+                            <td class="py-2">
+                                @if (item.InvoicedDate.HasValue)
+                                {
+                                    <span class="text-info small">@item.InvoicedDate.Value.ToString("MMM dd, yyyy")</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted small">-</span>
+                                }
+                            </td>
+                            <td class="py-2">
+                                @if (item.ResetDate.HasValue)
+                                {
+                                    <span class="text-warning small">@item.ResetDate.Value.ToString("MMM dd, yyyy")</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted small">-</span>
+                                }
+                            </td>
+                            <td class="py-2">
+                                @if (item.Invoice != null)
+                                {
+                                    <a href="@Url.Action("Details", "Invoice", new { id = item.Invoice.Id })" 
+                                       class="btn btn-outline-info btn-sm">
+                                        <i class="bi bi-receipt me-1"></i>@item.Invoice.InvoiceNumber
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted small">-</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Timeline View -->
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-transparent border-0 pb-0">
+        <h6 class="mb-0 fw-bold">
+            <i class="bi bi-clock-history text-primary me-2"></i>Job Timeline
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="timeline">
+            @foreach (var item in Model.OrderByDescending(j => j.CreatedDate).Take(10))
+            {
+                <div class="timeline-item">
+                    <div class="timeline-marker @GetTimelineMarkerClass(item)"></div>
+                    <div class="timeline-content">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="mb-1 small fw-medium">@item.JobList.JobName</h6>
+                                <p class="text-muted small mb-1">@item.JobList.Description</p>
+                                <small class="text-muted">
+                                    Created: @item.CreatedDate.ToString("MMM dd, yyyy HH:mm")
+                                    @if (item.CompletedDate.HasValue)
+                                    {
+                                        <span class="ms-2">| Completed: @item.CompletedDate.Value.ToString("MMM dd, yyyy")</span>
+                                    }
+                                    @if (item.InvoicedDate.HasValue)
+                                    {
+                                        <span class="ms-2">| Invoiced: @item.InvoicedDate.Value.ToString("MMM dd, yyyy")</span>
+                                    }
+                                </small>
+                            </div>
+                            <div class="text-end">
+                                <strong class="small">$@item.JobList.Price.ToString("F2")</strong>
+                                <br>
+                                <span class="badge @GetStatusBadgeClass(item) rounded-pill small">@GetStatusText(item)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -35px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.timeline-marker.completed { background-color: #28a745; }
+.timeline-marker.invoiced { background-color: #17a2b8; }
+.timeline-marker.selected { background-color: #ffc107; }
+.timeline-marker.reset { background-color: #6c757d; }
+.timeline-marker.available { background-color: #e9ecef; }
+
+.timeline-content {
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 6px;
+    border-left: 3px solid #007bff;
+}
+
+.table th {
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table td {
+    font-size: 0.875rem;
+}
+
+.badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.btn-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-1px);
+}
+</style>
+
+@functions {
+    private string GetTimelineMarkerClass(CustomerJobList job)
+    {
+        if (job.IsCompleted) return "completed";
+        if (job.IsInvoiced) return "invoiced";
+        if (job.IsSelected) return "selected";
+        if (job.IsResetForNewVisit) return "reset";
+        return "available";
+    }
+
+    private string GetStatusBadgeClass(CustomerJobList job)
+    {
+        if (job.IsCompleted) return "bg-success";
+        if (job.IsInvoiced) return "bg-info";
+        if (job.IsSelected) return "bg-warning";
+        if (job.IsResetForNewVisit) return "bg-secondary";
+        return "bg-light text-dark";
+    }
+
+    private string GetStatusText(CustomerJobList job)
+    {
+        if (job.IsCompleted) return "Completed";
+        if (job.IsInvoiced) return "Invoiced";
+        if (job.IsSelected) return "Selected";
+        if (job.IsResetForNewVisit) return "Reset";
+        return "Available";
+    }
+} 

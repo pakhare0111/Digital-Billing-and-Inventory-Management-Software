@@ -1,0 +1,405 @@
+@model Billing_Software.Models.SettingsViewModel
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="mb-1 fw-bold">
+            <i class="bi bi-gear text-info me-2"></i>Settings
+        </h4>
+        <p class="text-muted small mb-0">Configure application preferences and system settings</p>
+    </div>
+    <div class="btn-group btn-group-sm" role="group">
+        <a href="#" class="btn btn-outline-primary btn-sm" onclick="saveAllSettings()">
+            <i class="bi bi-check-circle me-1"></i>Save All
+        </a>
+        <a href="#" class="btn btn-outline-secondary btn-sm" onclick="resetToDefaults()">
+            <i class="bi bi-arrow-clockwise me-1"></i>Reset Defaults
+        </a>
+    </div>
+</div>
+
+<!-- Settings Navigation -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-list text-info me-2"></i>Settings Categories
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <a href="#appSettings" class="btn btn-outline-primary btn-sm w-100 text-start">
+                            <i class="bi bi-gear me-2"></i>Application Settings
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="#emailSettings" class="btn btn-outline-success btn-sm w-100 text-start">
+                            <i class="bi bi-envelope me-2"></i>Email Configuration
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="#whatsappSettings" class="btn btn-outline-info btn-sm w-100 text-start">
+                            <i class="bi bi-whatsapp me-2"></i>WhatsApp Settings
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Application Settings -->
+<div class="row mb-4" id="appSettings">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-gear text-primary me-2"></i>Application Settings
+                </h6>
+            </div>
+            <div class="card-body">
+                <form id="appSettingsForm">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Company Name</label>
+                            <input type="text" class="form-control form-control-sm" id="CompanyName" name="CompanyName" value="@Model.AppSettings.CompanyName" placeholder="Enter company name">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Company Address</label>
+                            <input type="text" class="form-control form-control-sm" id="CompanyAddress" name="CompanyAddress" value="@Model.AppSettings.CompanyAddress" placeholder="Enter company address">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Phone Number</label>
+                            <input type="tel" class="form-control form-control-sm" id="CompanyPhone" name="CompanyPhone" value="@Model.AppSettings.CompanyPhone" placeholder="Enter phone number">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Email Address</label>
+                            <input type="email" class="form-control form-control-sm" id="CompanyEmail" name="CompanyEmail" value="@Model.AppSettings.CompanyEmail" placeholder="Enter email address">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Logo Path</label>
+                            <input type="text" class="form-control form-control-sm" id="LogoPath" name="LogoPath" value="@Model.AppSettings.LogoPath" placeholder="Enter logo path">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Tax Rate (%)</label>
+                            <input type="number" class="form-control form-control-sm" id="TaxRate" name="TaxRate" value="@Model.AppSettings.TaxRate" step="0.01" min="0" max="100" placeholder="Enter tax rate">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Currency</label>
+                            <select class="form-select form-select-sm" id="Currency" name="Currency">
+                                <option value="USD" selected="@(Model.AppSettings.Currency == "USD")">USD ($)</option>
+                                <option value="EUR" selected="@(Model.AppSettings.Currency == "EUR")">EUR (€)</option>
+                                <option value="GBP" selected="@(Model.AppSettings.Currency == "GBP")">GBP (£)</option>
+                                <option value="INR" selected="@(Model.AppSettings.Currency == "INR")">INR (₹)</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Email Settings -->
+<div class="row mb-4" id="emailSettings">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-envelope text-success me-2"></i>Email Configuration
+                </h6>
+            </div>
+            <div class="card-body">
+                <form id="emailSettingsForm">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">SMTP Server</label>
+                            <input type="text" class="form-control form-control-sm" id="SmtpServer" name="SmtpServer" value="@Model.EmailSettings.SmtpServer" placeholder="Enter SMTP server">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">SMTP Port</label>
+                            <input type="number" class="form-control form-control-sm" id="SmtpPort" name="SmtpPort" value="@Model.EmailSettings.SmtpPort" placeholder="Enter SMTP port">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">SMTP Username</label>
+                            <input type="email" class="form-control form-control-sm" id="SmtpUsername" name="SmtpUsername" value="@Model.EmailSettings.SmtpUsername" placeholder="Enter SMTP username">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">SMTP Password</label>
+                            <input type="password" class="form-control form-control-sm" id="SmtpPassword" name="SmtpPassword" value="@Model.EmailSettings.SmtpPassword" placeholder="Enter SMTP password">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">From Email</label>
+                            <input type="email" class="form-control form-control-sm" id="FromEmail" name="FromEmail" value="@Model.EmailSettings.FromEmail" placeholder="Enter from email">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">From Name</label>
+                            <input type="text" class="form-control form-control-sm" id="FromName" name="FromName" value="@Model.EmailSettings.FromName" placeholder="Enter from name">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Enable SSL</label>
+                            <select class="form-select form-select-sm" id="EnableSsl" name="EnableSsl">
+                                <option value="true" selected="@Model.EmailSettings.EnableSsl">Yes</option>
+                                <option value="false" selected="@(!Model.EmailSettings.EnableSsl)">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- WhatsApp Settings -->
+<div class="row mb-4" id="whatsappSettings">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-whatsapp text-success me-2"></i>WhatsApp Configuration
+                </h6>
+            </div>
+            <div class="card-body">
+                <form id="whatsappSettingsForm">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">WhatsApp API Key</label>
+                            <input type="text" class="form-control form-control-sm" id="ApiKey" name="ApiKey" value="@Model.WhatsAppSettings.ApiKey" placeholder="Enter WhatsApp API key">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">WhatsApp Phone Number</label>
+                            <input type="tel" class="form-control form-control-sm" id="PhoneNumber" name="PhoneNumber" value="@Model.WhatsAppSettings.PhoneNumber" placeholder="Enter WhatsApp phone number">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Template ID</label>
+                            <input type="text" class="form-control form-control-sm" id="TemplateId" name="TemplateId" value="@Model.WhatsAppSettings.TemplateId" placeholder="Enter template ID">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Base URL</label>
+                            <input type="url" class="form-control form-control-sm" id="BaseUrl" name="BaseUrl" value="@Model.WhatsAppSettings.BaseUrl" placeholder="Enter base URL">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Test Configuration -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-play-circle text-warning me-2"></i>Test Configuration
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-outline-primary btn-sm w-100" onclick="testEmailConfiguration()">
+                            <i class="bi bi-envelope me-1"></i>Test Email
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-outline-success btn-sm w-100" onclick="testWhatsAppConfiguration()">
+                            <i class="bi bi-whatsapp me-1"></i>Test WhatsApp
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-outline-info btn-sm w-100" onclick="testAllConfigurations()">
+                            <i class="bi bi-play-circle me-1"></i>Test All
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- System Information -->
+<div class="row">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-info-circle text-info me-2"></i>System Information
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <div class="border rounded p-3 bg-light text-center">
+                            <div class="h4 text-primary mb-1">v2.0</div>
+                            <div class="small text-muted">Application Version</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border rounded p-3 bg-light text-center">
+                            <div class="h4 text-success mb-1">Active</div>
+                            <div class="small text-muted">System Status</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border rounded p-3 bg-light text-center">
+                            <div class="h4 text-warning mb-1">@DateTime.Now.ToString("MMM dd")</div>
+                            <div class="small text-muted">Last Updated</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border rounded p-3 bg-light text-center">
+                            <div class="h4 text-info mb-1">Online</div>
+                            <div class="small text-muted">Connection</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card { transition: transform 0.2s ease-in-out; }
+    .card:hover { transform: translateY(-1px); }
+    .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .form-control-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .form-select-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .form-label { font-size: 0.875rem; font-weight: 500; }
+</style>
+
+@section Scripts {
+    <script>
+        function saveAllSettings() {
+            // Collect all form data
+            const appData = new FormData(document.getElementById('appSettingsForm'));
+            const emailData = new FormData(document.getElementById('emailSettingsForm'));
+            const whatsappData = new FormData(document.getElementById('whatsappSettingsForm'));
+
+            // Combine all data
+            const allData = new FormData();
+            for (let [key, value] of appData.entries()) {
+                allData.append(key, value);
+            }
+            for (let [key, value] of emailData.entries()) {
+                allData.append(key, value);
+            }
+            for (let [key, value] of whatsappData.entries()) {
+                allData.append(key, value);
+            }
+
+            // Send to server
+            fetch('/Settings/SaveSettings', {
+                method: 'POST',
+                body: allData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlert('Settings saved successfully!', 'success');
+                } else {
+                    showAlert('Error saving settings: ' + data.message, 'danger');
+                }
+            })
+            .catch(error => {
+                showAlert('Error saving settings: ' + error.message, 'danger');
+            });
+        }
+
+        function resetToDefaults() {
+            if (confirm('Are you sure you want to reset all settings to defaults?')) {
+                fetch('/Settings/ResetToDefaults', {
+                    method: 'POST'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        showAlert('Error resetting settings: ' + data.message, 'danger');
+                    }
+                })
+                .catch(error => {
+                    showAlert('Error resetting settings: ' + error.message, 'danger');
+                });
+            }
+        }
+
+        function testEmailConfiguration() {
+            fetch('/Settings/TestEmail', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlert('Email test successful!', 'success');
+                } else {
+                    showAlert('Email test failed: ' + data.message, 'danger');
+                }
+            })
+            .catch(error => {
+                showAlert('Email test error: ' + error.message, 'danger');
+            });
+        }
+
+        function testWhatsAppConfiguration() {
+            fetch('/Settings/TestWhatsApp', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlert('WhatsApp test successful!', 'success');
+                } else {
+                    showAlert('WhatsApp test failed: ' + data.message, 'danger');
+                }
+            })
+            .catch(error => {
+                showAlert('WhatsApp test error: ' + error.message, 'danger');
+            });
+        }
+
+        function testAllConfigurations() {
+            Promise.all([
+                fetch('/Settings/TestEmail', { method: 'POST' }),
+                fetch('/Settings/TestWhatsApp', { method: 'POST' })
+            ])
+            .then(responses => Promise.all(responses.map(r => r.json())))
+            .then(results => {
+                const emailSuccess = results[0].success;
+                const whatsappSuccess = results[1].success;
+                
+                if (emailSuccess && whatsappSuccess) {
+                    showAlert('All tests successful!', 'success');
+                } else {
+                    let message = 'Some tests failed: ';
+                    if (!emailSuccess) message += 'Email, ';
+                    if (!whatsappSuccess) message += 'WhatsApp, ';
+                    message = message.slice(0, -2);
+                    showAlert(message, 'warning');
+                }
+            })
+            .catch(error => {
+                showAlert('Test error: ' + error.message, 'danger');
+            });
+        }
+
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.insertBefore(alertDiv, document.body.firstChild);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+    </script>
+} 

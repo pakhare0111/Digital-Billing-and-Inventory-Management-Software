@@ -1,0 +1,353 @@
+@model Billing_Software.Models.ServiceRecord
+@{
+    ViewData["Title"] = "Service Details";
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="mb-1 fw-bold">
+            <i class="bi bi-tools text-info me-2"></i>Service Details
+        </h4>
+        <p class="text-muted small mb-0">Service Record #@Model.Id</p>
+    </div>
+    <div class="btn-group btn-group-sm" role="group">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning btn-sm">
+            <i class="bi bi-pencil me-1"></i>Edit
+        </a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger btn-sm">
+            <i class="bi bi-trash me-1"></i>Delete
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left me-1"></i>Back to Services
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Service Information -->
+    <div class="col-md-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-tools text-info me-2"></i>Service Information
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium">Service Type</label>
+                            <p class="mb-0 fw-bold">@Model.ServiceType</p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium">Status</label>
+                            <div>
+                                @{
+                                    var statusClass = Model.Status.ToString().ToLower() switch
+                                    {
+                                        "scheduled" => "bg-primary",
+                                        "inprogress" => "bg-warning",
+                                        "completed" => "bg-success",
+                                        "cancelled" => "bg-danger",
+                                        _ => "bg-secondary"
+                                    };
+                                }
+                                <span class="badge @statusClass rounded-pill small">@Model.Status</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium">Service Date</label>
+                            <p class="mb-0">@Model.ServiceDate.ToString("MMMM dd, yyyy")</p>
+                        </div>
+                        
+                        @if (Model.NextServiceDate.HasValue)
+                        {
+                            <div class="mb-3">
+                                <label class="form-label small fw-medium">Next Service Date</label>
+                                <p class="mb-0">@Model.NextServiceDate.Value.ToString("MMMM dd, yyyy")</p>
+                            </div>
+                        }
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium">Cost</label>
+                            @if (Model.Cost.HasValue)
+                            {
+                                <p class="mb-0 fw-bold text-success">@Model.Cost.Value.ToString("0.00")</p>
+                            }
+                            else
+                            {
+                                <p class="mb-0 text-muted">Not specified</p>
+                            }
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium">Technician</label>
+                            <p class="mb-0">@(string.IsNullOrEmpty(Model.Technician) ? "Not assigned" : Model.Technician)</p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium">Created</label>
+                            <p class="mb-0">@Model.CreatedDate.ToString("MMM dd, yyyy HH:mm")</p>
+                        </div>
+                        
+                        @if (Model.LastModified.HasValue)
+                        {
+                            <div class="mb-3">
+                                <label class="form-label small fw-medium">Last Modified</label>
+                                <p class="mb-0">@Model.LastModified.Value.ToString("MMM dd, yyyy HH:mm")</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+                
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <hr class="my-3">
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">Description</label>
+                        <p class="mb-0">@Model.Description</p>
+                    </div>
+                }
+                
+                @if (!string.IsNullOrEmpty(Model.Notes))
+                {
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">Notes</label>
+                        <p class="mb-0">@Model.Notes</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    
+    <!-- Customer Information -->
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-person text-info me-2"></i>Customer Information
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label small fw-medium">Customer</label>
+                    <p class="mb-0">
+                        <a asp-controller="Customer" asp-action="Details" asp-route-id="@Model.CustomerId">
+                            @Model.Customer?.Name
+                        </a>
+                    </p>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label small fw-medium">Phone</label>
+                    <p class="mb-0">@Model.Customer?.Phone</p>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label small fw-medium">Email</label>
+                    <p class="mb-0">@(string.IsNullOrEmpty(Model.Customer?.Email) ? "Not provided" : Model.Customer.Email)</p>
+                </div>
+                
+                @if (!string.IsNullOrEmpty(Model.Customer?.Address))
+                {
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">Address</label>
+                        <p class="mb-0">@Model.Customer.Address</p>
+                    </div>
+                }
+            </div>
+        </div>
+        
+        <!-- Vehicle Information -->
+        @if (Model.Vehicle != null)
+        {
+            <div class="card border-0 shadow-sm mt-3">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-bicycle text-info me-2"></i>Vehicle Information
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">Vehicle</label>
+                        <p class="mb-0">@Model.Vehicle.Brand @Model.Vehicle.Model</p>
+                    </div>
+                    
+                    @if (!string.IsNullOrEmpty(Model.Vehicle.Year))
+                    {
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium">Year</label>
+                            <p class="mb-0">@Model.Vehicle.Year</p>
+                        </div>
+                    }
+                    
+                    @if (!string.IsNullOrEmpty(Model.Vehicle.PlateNumber))
+                    {
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium">Plate Number</label>
+                            <p class="mb-0">@Model.Vehicle.PlateNumber</p>
+                        </div>
+                    }
+                    
+                    @if (!string.IsNullOrEmpty(Model.Vehicle.Color))
+                    {
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium">Color</label>
+                            <p class="mb-0">@Model.Vehicle.Color</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-lightning text-info me-2"></i>Quick Actions
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <form asp-action="UpdateStatus" method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <input type="hidden" name="status" value="Scheduled" />
+                            <button type="submit" class="btn btn-outline-primary btn-sm w-100" 
+                                    @(Model.Status == ServiceStatus.Scheduled ? "disabled" : "")>
+                                <i class="bi bi-calendar me-1"></i>Mark Scheduled
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <form asp-action="UpdateStatus" method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <input type="hidden" name="status" value="InProgress" />
+                            <button type="submit" class="btn btn-outline-warning btn-sm w-100"
+                                    @(Model.Status == ServiceStatus.InProgress ? "disabled" : "")>
+                                <i class="bi bi-clock me-1"></i>Mark In Progress
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <form asp-action="UpdateStatus" method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <input type="hidden" name="status" value="Completed" />
+                            <button type="submit" class="btn btn-outline-success btn-sm w-100"
+                                    @(Model.Status == ServiceStatus.Completed ? "disabled" : "")>
+                                <i class="bi bi-check me-1"></i>Mark Completed
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <form asp-action="SendReminder" method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <button type="submit" class="btn btn-outline-info btn-sm w-100">
+                                <i class="bi bi-bell me-1"></i>Send Reminder
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Related Services -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-clock-history text-info me-2"></i>Service History
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <h6 class="fw-bold">Customer's Previous Services</h6>
+                        <div class="list-group">
+                            @{
+                                var customerServices = Model.Customer?.ServiceRecords?.Where(s => s.Id != Model.Id).OrderByDescending(s => s.ServiceDate).Take(5) ?? new List<ServiceRecord>();
+                            }
+                            
+                            @if (customerServices.Any())
+                            {
+                                @foreach (var service in customerServices)
+                                {
+                                    <a href="@Url.Action("Details", new { id = service.Id })" class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">@service.ServiceType</h6>
+                                            <small class="text-muted">@service.ServiceDate.ToString("MMM dd, yyyy")</small>
+                                        </div>
+                                        <p class="mb-1 small">@service.Description</p>
+                                        <small class="text-muted">Status: @service.Status</small>
+                                    </a>
+                                }
+                            }
+                            else
+                            {
+                                <p class="text-muted small">No previous services found for this customer.</p>
+                            }
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <h6 class="fw-bold">Vehicle's Service History</h6>
+                        @if (Model.Vehicle != null)
+                        {
+                            <div class="list-group">
+                                @{
+                                    var vehicleServices = Model.Vehicle.ServiceRecords?.Where(s => s.Id != Model.Id).OrderByDescending(s => s.ServiceDate).Take(5) ?? new List<ServiceRecord>();
+                                }
+                                
+                                @if (vehicleServices.Any())
+                                {
+                                    @foreach (var service in vehicleServices)
+                                    {
+                                        <a href="@Url.Action("Details", new { id = service.Id })" class="list-group-item list-group-item-action">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">@service.ServiceType</h6>
+                                                <small class="text-muted">@service.ServiceDate.ToString("MMM dd, yyyy")</small>
+                                            </div>
+                                            <p class="mb-1 small">@service.Description</p>
+                                            <small class="text-muted">Status: @service.Status</small>
+                                        </a>
+                                    }
+                                }
+                                else
+                                {
+                                    <p class="text-muted small">No previous services found for this vehicle.</p>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-muted small">No vehicle associated with this service.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card { transition: transform 0.2s ease-in-out; }
+    .card:hover { transform: translateY(-1px); }
+    .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .badge { font-size: 0.75rem; font-weight: 500; }
+    .list-group-item { font-size: 0.875rem; }
+</style> 

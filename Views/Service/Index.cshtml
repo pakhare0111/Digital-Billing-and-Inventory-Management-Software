@@ -1,0 +1,245 @@
+@model IEnumerable<Billing_Software.Models.ServiceRecord>
+@{
+    ViewData["Title"] = "Services";
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="mb-1 fw-bold">
+            <i class="bi bi-tools text-info me-2"></i>Service Management
+        </h4>
+        <p class="text-muted small mb-0">Manage service records and appointments</p>
+    </div>
+    <a asp-action="Create" class="btn btn-primary btn-sm">
+        <i class="bi bi-plus-circle me-1"></i>New Service
+    </a>
+</div>
+
+<!-- Compact Search and Filter -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-body p-3">
+        <form method="get" class="row g-2">
+            <div class="col-md-4">
+                <label for="searchTerm" class="form-label small fw-medium">Search</label>
+                <input type="text" class="form-control form-control-sm" id="searchTerm" name="searchTerm" 
+                       value="@ViewBag.SearchTerm" placeholder="Search by service type, customer, or vehicle...">
+            </div>
+            <div class="col-md-3">
+                <label for="status" class="form-label small fw-medium">Status</label>
+                <select class="form-select form-select-sm" id="status" name="status">
+                    <option value="">All Statuses</option>
+                    <option value="Scheduled" selected="@(ViewBag.Status == "Scheduled")">Scheduled</option>
+                    <option value="InProgress" selected="@(ViewBag.Status == "InProgress")">In Progress</option>
+                    <option value="Completed" selected="@(ViewBag.Status == "Completed")">Completed</option>
+                    <option value="Cancelled" selected="@(ViewBag.Status == "Cancelled")">Cancelled</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="customerFilter" class="form-label small fw-medium">Customer</label>
+                <select class="form-select form-select-sm" id="customerFilter" name="customerFilter">
+                    <option value="">All Customers</option>
+                    @foreach (var customer in ViewBag.Customers ?? new List<Billing_Software.Models.Customer>())
+                    {
+                        <option value="@customer.Id" selected="@(ViewBag.CustomerFilter == customer.Id.ToString())">@customer.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <div>
+                    <button type="submit" class="btn btn-primary btn-sm me-2">
+                        <i class="bi bi-search me-1"></i>Search
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-x-circle me-1"></i>Clear
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-lightning text-info me-2"></i>Quick Actions
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <a asp-action="Upcoming" class="btn btn-success btn-sm w-100">
+                            <i class="bi bi-calendar-check me-1"></i>Upcoming Services
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a asp-action="Overdue" class="btn btn-danger btn-sm w-100">
+                            <i class="bi bi-exclamation-triangle me-1"></i>Overdue Services
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a asp-action="Create" class="btn btn-primary btn-sm w-100">
+                            <i class="bi bi-plus-circle me-1"></i>Schedule Service
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a asp-controller="Report" asp-action="Service" class="btn btn-info btn-sm w-100">
+                            <i class="bi bi-graph-up me-1"></i>Service Reports
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Services List -->
+<div class="row">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-tools text-info me-2"></i>Service Records
+                    </h6>
+                    <span class="badge bg-info rounded-pill small">@Model.Count() total</span>
+                </div>
+            </div>
+            <div class="card-body">
+                @if (Model.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Service Type</th>
+                                    <th>Customer</th>
+                                    <th>Vehicle</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Cost</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var service in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <strong>@service.ServiceType</strong>
+                                            @if (!string.IsNullOrEmpty(service.Description))
+                                            {
+                                                <br><small class="text-muted">@service.Description</small>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a asp-controller="Customer" asp-action="Details" asp-route-id="@service.CustomerId">
+                                                @service.Customer?.Name
+                                            </a>
+                                            <br><small class="text-muted">@service.Customer?.Phone</small>
+                                        </td>
+                                        <td>
+                                            @if (service.Vehicle != null)
+                                            {
+                                                <span>@service.Vehicle.Brand @service.Vehicle.Model</span>
+                                                <br><small class="text-muted">@service.Vehicle.PlateNumber</small>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted">No vehicle</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <strong>@service.ServiceDate.ToString("MMM dd, yyyy")</strong>
+                                            @if (service.NextServiceDate.HasValue)
+                                            {
+                                                <br><small class="text-muted">Next: @service.NextServiceDate.Value.ToString("MMM dd, yyyy")</small>
+                                            }
+                                        </td>
+                                        <td>
+                                            @{
+                                                var statusClass = service.Status.ToString().ToLower() switch
+                                                {
+                                                    "scheduled" => "bg-primary",
+                                                    "inprogress" => "bg-warning",
+                                                    "completed" => "bg-success",
+                                                    "cancelled" => "bg-danger",
+                                                    _ => "bg-secondary"
+                                                };
+                                            }
+                                            <span class="badge @statusClass rounded-pill small">@service.Status</span>
+                                        </td>
+                                        <td>
+                                            @if (service.Cost.HasValue)
+                                            {
+                                                <strong>@service.Cost.Value.ToString("0.00")</strong>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted">Not set</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <a asp-action="Details" asp-route-id="@service.Id" class="btn btn-outline-primary btn-sm">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <a asp-action="Edit" asp-route-id="@service.Id" class="btn btn-outline-warning btn-sm">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@service.Id" class="btn btn-outline-danger btn-sm">
+                                                    <i class="bi bi-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-5">
+                        <i class="bi bi-tools display-4 text-muted mb-3"></i>
+                        <h5 class="text-muted">No service records found</h5>
+                        <p class="small text-muted">Get started by creating your first service record.</p>
+                        <a asp-action="Create" class="btn btn-primary btn-sm">
+                            <i class="bi bi-plus-circle me-2"></i>Create Service Record
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Auto-submit form on filter change
+            $('#status, #customerFilter').change(function() {
+                $(this).closest('form').submit();
+            });
+
+            // Initialize tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
+    
+    <style>
+        .card { transition: transform 0.2s ease-in-out; }
+        .card:hover { transform: translateY(-1px); }
+        .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+        .form-control-sm, .form-select-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+        .badge { font-size: 0.75rem; font-weight: 500; }
+        .table th { font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .table td { font-size: 0.875rem; }
+    </style>
+} 

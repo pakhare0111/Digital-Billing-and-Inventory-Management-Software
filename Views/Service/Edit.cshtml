@@ -1,0 +1,194 @@
+@model Billing_Software.Models.ServiceRecord
+@{
+    ViewData["Title"] = "Edit Service";
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="mb-1 fw-bold">
+            <i class="bi bi-pencil text-info me-2"></i>Edit Service Record
+        </h4>
+        <p class="text-muted small mb-0">Update service information and details</p>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i>Back to Services
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-tools text-info me-2"></i>Service Information
+                </h6>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="row g-3">
+                        <!-- Customer Information -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="CustomerId" class="form-label small fw-medium">Customer *</label>
+                                <select asp-for="CustomerId" class="form-select form-select-sm" required>
+                                    <option value="">Select Customer</option>
+                                    @foreach (var customer in ViewBag.Customers ?? new List<Billing_Software.Models.Customer>())
+                                    {
+                                        <option value="@customer.Id" selected="@(Model.CustomerId == customer.Id)">
+                                            @customer.Name - @customer.Phone
+                                        </option>
+                                    }
+                                </select>
+                                <span asp-validation-for="CustomerId" class="text-danger small"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="VehicleId" class="form-label small fw-medium">Vehicle</label>
+                                <select asp-for="VehicleId" class="form-select form-select-sm" id="vehicleSelect">
+                                    <option value="">Select Vehicle (Optional)</option>
+                                </select>
+                                <span asp-validation-for="VehicleId" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <!-- Service Information -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="ServiceType" class="form-label small fw-medium">Service Type *</label>
+                                <input asp-for="ServiceType" class="form-control form-control-sm" placeholder="e.g., Oil Change, Brake Service, etc." required />
+                                <span asp-validation-for="ServiceType" class="text-danger small"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Status" class="form-label small fw-medium">Status</label>
+                                <select asp-for="Status" class="form-select form-select-sm" asp-items="@(new SelectList(ViewBag.ServiceStatuses))">
+                                </select>
+                                <span asp-validation-for="Status" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-3">
+
+                    <div class="row g-3">
+                        <!-- Service Details -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="ServiceDate" class="form-label small fw-medium">Service Date *</label>
+                                <input asp-for="ServiceDate" type="date" class="form-control form-control-sm" required />
+                                <span asp-validation-for="ServiceDate" class="text-danger small"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="NextServiceDate" class="form-label small fw-medium">Next Service Date</label>
+                                <input asp-for="NextServiceDate" type="date" class="form-control form-control-sm" />
+                                <span asp-validation-for="NextServiceDate" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <!-- Cost and Technician -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="Cost" class="form-label small fw-medium">Estimated Cost</label>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text">$</span>
+                                    <input asp-for="Cost" type="number" step="0.01" class="form-control form-control-sm" placeholder="0.00" />
+                                </div>
+                                <span asp-validation-for="Cost" class="text-danger small"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Technician" class="form-label small fw-medium">Technician</label>
+                                <input asp-for="Technician" class="form-control form-control-sm" placeholder="Technician name" />
+                                <span asp-validation-for="Technician" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-3">
+
+                    <!-- Description and Notes -->
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label asp-for="Description" class="form-label small fw-medium">Description</label>
+                                <textarea asp-for="Description" class="form-control form-control-sm" rows="3" 
+                                          placeholder="Detailed description of the service required..."></textarea>
+                                <span asp-validation-for="Description" class="text-danger small"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Notes" class="form-label small fw-medium">Notes</label>
+                                <textarea asp-for="Notes" class="form-control form-control-sm" rows="3" 
+                                          placeholder="Additional notes, special instructions, or customer preferences..."></textarea>
+                                <span asp-validation-for="Notes" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-3">
+
+                    <!-- Form Actions -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+                                    <i class="bi bi-x-circle me-1"></i>Cancel
+                                </a>
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="bi bi-check-circle me-1"></i>Update Service Record
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Load vehicles when customer is selected
+            $('#CustomerId').change(function() {
+                var customerId = $(this).val();
+                if (customerId) {
+                    loadVehicles(customerId);
+                } else {
+                    $('#vehicleSelect').html('<option value="">Select Vehicle (Optional)</option>');
+                }
+            });
+
+            function loadVehicles(customerId) {
+                $.get('/Customer/GetVehicles', { customerId: customerId }, function(data) {
+                    var options = '<option value="">Select Vehicle (Optional)</option>';
+                    data.forEach(function(vehicle) {
+                        options += '<option value="' + vehicle.id + '">' + 
+                                 vehicle.brand + ' ' + vehicle.model + 
+                                 (vehicle.plateNumber ? ' - ' + vehicle.plateNumber : '') + '</option>';
+                    });
+                    $('#vehicleSelect').html(options);
+                });
+            }
+
+            // Auto-calculate next service date (30 days from service date)
+            $('#ServiceDate').change(function() {
+                var serviceDate = new Date($(this).val());
+                var nextDate = new Date(serviceDate);
+                nextDate.setDate(nextDate.getDate() + 30);
+                $('#NextServiceDate').val(nextDate.toISOString().split('T')[0]);
+            });
+        });
+    </script>
+    
+    <style>
+        .card { transition: transform 0.2s ease-in-out; }
+        .card:hover { transform: translateY(-1px); }
+        .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+        .form-control-sm, .form-select-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+        .input-group-sm > .form-control, .input-group-sm > .form-select, .input-group-sm > .input-group-text { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    </style>
+} 

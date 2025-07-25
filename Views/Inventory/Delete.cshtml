@@ -1,0 +1,206 @@
+@model Billing_Software.Models.Inventory
+@{
+    ViewData["Title"] = "Delete Inventory Item";
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="mb-1 fw-bold">
+            <i class="bi bi-trash text-danger me-2"></i>Delete Inventory Item
+        </h4>
+        <p class="text-muted small mb-0">Confirm deletion of inventory item</p>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i>Back to List
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-exclamation-triangle text-danger me-2"></i>Warning
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-danger alert-sm">
+                    <div class="d-flex align-items-start">
+                        <i class="bi bi-exclamation-triangle me-2 mt-1"></i>
+                        <div>
+                            <strong>Are you sure?</strong>
+                            <div class="small">This action cannot be undone.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Name</label>
+                            <div class="fw-bold">@Model.Name</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Category</label>
+                            <div><span class="badge bg-info rounded-pill small">@Model.Category</span></div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">SKU</label>
+                            <div>@(Model.SKU ?? "Not set")</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Unit</label>
+                            <div>@(Model.Unit ?? "Not specified")</div>
+                        </div>
+                        @if (!string.IsNullOrEmpty(Model.Description))
+                        {
+                            <div class="mb-3">
+                                <label class="form-label small fw-medium text-muted">Description</label>
+                                <div class="small">@Model.Description</div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Current Stock</label>
+                            <div class="h5 @(Model.Quantity == 0 ? "text-danger" : Model.Quantity <= Model.MinStockLevel ? "text-warning" : "text-success")">
+                                @Model.Quantity @(Model.Unit ?? "units")
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Price</label>
+                            <div class="fw-bold">@Model.Price.ToString("0.00")</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Total Value</label>
+                            <div class="fw-bold text-info">@((Model.Price * Model.Quantity).ToString("0.00"))</div>
+                        </div>
+                        @if (!string.IsNullOrEmpty(Model.Supplier))
+                        {
+                            <div class="mb-3">
+                                <label class="form-label small fw-medium text-muted">Supplier</label>
+                                <div><i class="bi bi-truck me-1"></i>@Model.Supplier</div>
+                            </div>
+                        }
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Created</label>
+                            <div class="small">@Model.CreatedDate.ToString("MMM dd, yyyy")</div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-3">
+
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+                            <i class="bi bi-x-circle me-1"></i>Cancel
+                        </a>
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash me-1"></i>Delete Item
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-info-circle text-info me-2"></i>Impact Analysis
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning alert-sm">
+                    <div class="d-flex align-items-start">
+                        <i class="bi bi-exclamation-triangle me-2 mt-1"></i>
+                        <div>
+                            <strong>What will be deleted?</strong>
+                            <ul class="mb-0 small mt-2">
+                                <li>Inventory item record</li>
+                                <li>Stock level information</li>
+                                <li>Price and supplier details</li>
+                                <li>Item description and metadata</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mt-3">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-exclamation-triangle text-danger me-2"></i>Important Notes
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-danger alert-sm mb-2">
+                    <small>
+                        <strong>⚠️ Warning:</strong> This action is permanent and cannot be undone.
+                    </small>
+                </div>
+                <div class="alert alert-info alert-sm mb-0">
+                    <small>
+                        <strong>📋 Note:</strong> If this item is used in invoices, consider deactivating instead of deleting.
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mt-3">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-lightbulb text-info me-2"></i>Alternatives
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-warning btn-sm">
+                        <i class="bi bi-pencil me-1"></i>Edit Instead
+                    </a>
+                    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-info btn-sm">
+                        <i class="bi bi-eye me-1"></i>View Details
+                    </a>
+                    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-list me-1"></i>Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success/Error Messages -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-sm alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-start">
+            <i class="bi bi-check-circle me-2 mt-1"></i>
+            <div>@TempData["SuccessMessage"]</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-sm alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-start">
+            <i class="bi bi-exclamation-triangle me-2 mt-1"></i>
+            <div>@TempData["ErrorMessage"]</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<style>
+    .card { transition: transform 0.2s ease-in-out; }
+    .card:hover { transform: translateY(-1px); }
+    .alert-sm { padding: 0.5rem 0.75rem; font-size: 0.875rem; }
+    .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .badge { font-size: 0.75rem; font-weight: 500; }
+</style> 

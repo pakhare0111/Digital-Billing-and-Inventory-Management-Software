@@ -1,0 +1,287 @@
+@model IEnumerable<Billing_Software.Models.Inventory>
+@{
+    ViewData["Title"] = "Stock Value Analysis";
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="mb-1 fw-bold">
+            <i class="bi bi-graph-up text-info me-2"></i>Stock Value Analysis
+        </h4>
+        <p class="text-muted small mb-0">Analyze your inventory value and stock levels</p>
+    </div>
+    <div class="btn-group btn-group-sm">
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left me-1"></i>Back to Inventory
+        </a>
+        <a asp-action="LowStock" class="btn btn-outline-warning btn-sm">
+            <i class="bi bi-exclamation-triangle me-1"></i>Low Stock
+        </a>
+    </div>
+</div>
+
+<!-- Summary Cards -->
+<div class="row mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="card border-0 shadow-sm text-center">
+            <div class="card-body">
+                <div class="h3 text-info mb-1">@ViewBag.TotalValue.ToString("0.00")</div>
+                <small class="text-muted">Total Inventory Value</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card border-0 shadow-sm text-center">
+            <div class="card-body">
+                <div class="h3 text-success mb-1">@ViewBag.TotalItems</div>
+                <small class="text-muted">Total Items</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card border-0 shadow-sm text-center">
+            <div class="card-body">
+                <div class="h3 text-warning mb-1">@ViewBag.LowStockCount</div>
+                <small class="text-muted">Low Stock Items</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card border-0 shadow-sm text-center">
+            <div class="card-body">
+                <div class="h3 text-danger mb-1">@ViewBag.OutOfStockCount</div>
+                <small class="text-muted">Out of Stock Items</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Value Analysis -->
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-graph-up text-info me-2"></i>Inventory Value Breakdown
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Category</th>
+                                <th>Stock</th>
+                                <th>Unit Price</th>
+                                <th>Total Value</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderByDescending(i => i.Price * i.Quantity))
+                            {
+                                <tr>
+                                    <td>
+                                        <strong>@item.Name</strong>
+                                        @if (!string.IsNullOrEmpty(item.SKU))
+                                        {
+                                            <br><small class="text-muted">SKU: @item.SKU</small>
+                                        }
+                                    </td>
+                                    <td><span class="badge bg-info rounded-pill small">@item.Category</span></td>
+                                    <td>
+                                        <span class="@(item.Quantity == 0 ? "text-danger" : item.Quantity <= item.MinStockLevel ? "text-warning" : "text-success")">
+                                            @item.Quantity @(item.Unit ?? "units")
+                                        </span>
+                                    </td>
+                                    <td>@item.Price.ToString("0.00")</td>
+                                    <td>
+                                        <strong class="@((item.Price * item.Quantity) > 1000 ? "text-success" : "")">
+                                            @((item.Price * item.Quantity).ToString("0.00"))
+                                        </strong>
+                                    </td>
+                                    <td>
+                                        @if (item.Quantity == 0)
+                                        {
+                                            <span class="badge bg-danger rounded-pill small">Out of Stock</span>
+                                        }
+                                        else if (item.Quantity <= item.MinStockLevel)
+                                        {
+                                            <span class="badge bg-warning rounded-pill small">Low Stock</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-success rounded-pill small">In Stock</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <!-- Category Value Breakdown -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-pie-chart text-info me-2"></i>Value by Category
+                </h6>
+            </div>
+            <div class="card-body">
+                @foreach (var category in Model.GroupBy(i => i.Category))
+                {
+                    var categoryValue = category.Sum(i => i.Price * i.Quantity);
+                    var percentage = ViewBag.TotalValue > 0 ? (categoryValue / ViewBag.TotalValue) * 100 : 0;
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="fw-bold small">@category.Key</span>
+                            <span class="text-muted small">@categoryValue.ToString("0.00")</span>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-info" style="width: @percentage%"></div>
+                        </div>
+                        <small class="text-muted">@category.Count() items • @percentage.ToString("F1")% of total value</small>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Stock Status Distribution -->
+        <div class="card border-0 shadow-sm mt-3">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-pie-chart text-info me-2"></i>Stock Status
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row text-center g-2">
+                    <div class="col-4">
+                        <div class="border rounded p-2 bg-light">
+                            <div class="h6 text-success mb-1">@Model.Count(i => i.Quantity > i.MinStockLevel)</div>
+                            <small class="text-muted">Good Stock</small>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="border rounded p-2 bg-light">
+                            <div class="h6 text-warning mb-1">@Model.Count(i => i.Quantity > 0 && i.Quantity <= i.MinStockLevel)</div>
+                            <small class="text-muted">Low Stock</small>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="border rounded p-2 bg-light">
+                            <div class="h6 text-danger mb-1">@Model.Count(i => i.Quantity == 0)</div>
+                            <small class="text-muted">Out of Stock</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Value Items -->
+        <div class="card border-0 shadow-sm mt-3">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-trophy text-info me-2"></i>Top Value Items
+                </h6>
+            </div>
+            <div class="card-body">
+                @foreach (var item in Model.OrderByDescending(i => i.Price * i.Quantity).Take(5))
+                {
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div>
+                            <div class="fw-bold small">@item.Name</div>
+                            <small class="text-muted">@item.Category</small>
+                        </div>
+                        <div class="text-end">
+                            <div class="fw-bold text-success small">@((item.Price * item.Quantity).ToString("0.00"))</div>
+                            <small class="text-muted">@item.Quantity units</small>
+                        </div>
+                    </div>
+                    @if (item != Model.OrderByDescending(i => i.Price * i.Quantity).Take(5).Last())
+                    {
+                        <hr class="my-2">
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card border-0 shadow-sm mt-3">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-lightning text-info me-2"></i>Quick Actions
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a asp-action="Create" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-plus-circle me-1"></i>Add New Item
+                    </a>
+                    <a asp-action="LowStock" class="btn btn-outline-warning btn-sm">
+                        <i class="bi bi-exclamation-triangle me-1"></i>View Low Stock
+                    </a>
+                    <a asp-action="OutOfStock" class="btn btn-outline-danger btn-sm">
+                        <i class="bi bi-x-circle me-1"></i>View Out of Stock
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Value Trends (Placeholder) -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-graph-up text-info me-2"></i>Value Trends
+                </h6>
+            </div>
+            <div class="card-body text-center text-muted py-4">
+                <i class="bi bi-graph-up display-6 mb-3"></i>
+                <p class="small mb-0">Value trend analysis will be implemented in future updates.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success/Error Messages -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-sm alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-start">
+            <i class="bi bi-check-circle me-2 mt-1"></i>
+            <div>@TempData["SuccessMessage"]</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-sm alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-start">
+            <i class="bi bi-exclamation-triangle me-2 mt-1"></i>
+            <div>@TempData["ErrorMessage"]</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<style>
+    .card { transition: transform 0.2s ease-in-out; }
+    .card:hover { transform: translateY(-1px); }
+    .alert-sm { padding: 0.5rem 0.75rem; font-size: 0.875rem; }
+    .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .badge { font-size: 0.75rem; font-weight: 500; }
+    .table th { font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .table td { font-size: 0.875rem; }
+    .progress { background-color: #f8f9fa; }
+</style> 

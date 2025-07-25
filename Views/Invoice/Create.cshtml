@@ -1,0 +1,761 @@
+@model Billing_Software.Models.Invoice
+@{
+    ViewData["Title"] = "Create Invoice";
+    var customers = ViewBag.Customers as IEnumerable<Billing_Software.Models.Customer>;
+    var inventory = ViewBag.Inventory as IEnumerable<Billing_Software.Models.Inventory>;
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="h4 mb-1 fw-bold text-dark">Create New Invoice</h2>
+        <p class="text-muted small mb-0">Generate a new invoice for your customer</p>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-2"></i>Back to List
+    </a>
+</div>
+
+<!-- Auto WhatsApp Notification -->
+<div class="alert alert-info alert-sm alert-dismissible fade show mb-4" role="alert">
+    <div class="d-flex align-items-start">
+        <i class="bi bi-whatsapp text-success me-2 mt-1"></i>
+        <div>
+            <strong>Auto WhatsApp Sending:</strong> Invoice will be automatically sent via WhatsApp with PDF attachment after creation.
+            <small class="d-block text-muted mt-1">You can disable this feature in Settings → App Settings → WhatsApp Configuration</small>
+        </div>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+
+<!-- Error Messages -->
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-sm alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-start">
+            <i class="bi bi-exclamation-triangle me-2 mt-1"></i>
+            <div>@TempData["ErrorMessage"]</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["DebugMessage"] != null)
+{
+    <div class="alert alert-info alert-sm alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-start">
+            <i class="bi bi-info-circle me-2 mt-1"></i>
+            <div>@TempData["DebugMessage"]</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-sm alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-start">
+            <i class="bi bi-check-circle me-2 mt-1"></i>
+            <div>@TempData["SuccessMessage"]</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<form asp-action="Create" method="post" id="invoiceForm">
+    <div class="row g-4">
+        <!-- Invoice Details -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-receipt text-primary me-2"></i>Invoice Information
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger alert-sm" role="alert"></div>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label asp-for="CustomerId" class="form-label small fw-medium">Customer *</label>
+                            <select asp-for="CustomerId" class="form-select form-select-sm" required>
+                                <option value="">Select Customer</option>
+                                @if (customers != null)
+                                {
+                                    @foreach (var customer in customers.Where(c => c.IsActive))
+                                    {
+                                        <option value="@customer.Id" selected="@(customer.Id == Model.CustomerId)">
+                                            @customer.Name - @customer.Phone
+                                        </option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="CustomerId" class="text-danger small"></span>
+                            <small class="text-muted">Debug: Current CustomerId = @Model.CustomerId</small>
+                            <small class="text-muted d-block">Debug: Selected option value = <span id="selectedCustomerDebug"></span></small>
+                        </div>
+                        
+                        <input type="hidden" asp-for="InvoiceNumber" />
+                    </div>
+
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-6">
+                            <label asp-for="InvoiceDate" class="form-label small fw-medium">Invoice Date *</label>
+                            <input asp-for="InvoiceDate" type="date" class="form-control form-control-sm" required>
+                            <span asp-validation-for="InvoiceDate" class="text-danger small"></span>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label asp-for="DueDate" class="form-label small fw-medium">Due Date *</label>
+                            <input asp-for="DueDate" type="date" class="form-control form-control-sm" required>
+                            <span asp-validation-for="DueDate" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <label asp-for="Notes" class="form-label small fw-medium">Notes</label>
+                        <textarea asp-for="Notes" class="form-control form-control-sm" rows="3" placeholder="Additional notes for the invoice"></textarea>
+                        <span asp-validation-for="Notes" class="text-danger small"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selected Jobs -->
+            <div class="card border-0 shadow-sm mt-3" id="selectedJobsSection" style="display: none;">
+                <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-clipboard-check text-success me-2"></i>Selected Jobs
+                    </h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="includeJobListItems" name="IncludeJobListItems" value="true">
+                        <label class="form-check-label small" for="includeJobListItems">
+                            Include selected jobs in invoice
+                        </label>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="selectedJobsList">
+                        <!-- Selected jobs will be displayed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Completed Jobs -->
+            <div class="card border-0 shadow-sm mt-3" id="completedJobsSection" style="display: none;">
+                <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-check-circle text-primary me-2"></i>Completed Jobs
+                    </h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="includeCompletedJobs" name="IncludeCompletedJobs" value="true">
+                        <label class="form-check-label small" for="includeCompletedJobs">
+                            Include completed jobs in invoice
+                        </label>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="completedJobsList">
+                        <!-- Completed jobs will be displayed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Invoice Items -->
+            <div class="card border-0 shadow-sm mt-3">
+                <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-list text-primary me-2"></i>Invoice Items
+                    </h6>
+                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="addInvoiceItem()">
+                        <i class="bi bi-plus me-1"></i>Add Item
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div id="invoiceItems">
+                        <!-- Invoice items will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available Jobs -->
+            <div class="card border-0 shadow-sm mt-3" id="availableJobsSection" style="display: none;">
+                <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-clipboard-list text-info me-2"></i>Available Jobs
+                    </h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="includeAvailableJobs" name="IncludeAvailableJobs" value="true">
+                        <label class="form-check-label small" for="includeAvailableJobs">
+                            Include selected available jobs in invoice
+                        </label>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="availableJobsList">
+                        <!-- Available jobs will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invoice Summary -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-calculator text-primary me-2"></i>Invoice Summary
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-6 small">Inventory Items:</div>
+                        <div class="col-6 text-end small" id="inventorySubtotal">$0.00</div>
+                    </div>
+                    <div class="row mb-2" id="selectedJobsRow" style="display: none;">
+                        <div class="col-6 small">Selected Jobs:</div>
+                        <div class="col-6 text-end small" id="selectedJobsTotal">$0.00</div>
+                    </div>
+                    <div class="row mb-2" id="completedJobsRow" style="display: none;">
+                        <div class="col-6 small">Completed Jobs:</div>
+                        <div class="col-6 text-end small" id="completedJobsTotal">$0.00</div>
+                    </div>
+                    <div class="row mb-2" id="availableJobsRow" style="display: none;">
+                        <div class="col-6 small">Available Jobs:</div>
+                        <div class="col-6 text-end small" id="availableJobsTotal">$0.00</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-6 small">Subtotal:</div>
+                        <div class="col-6 text-end small" id="subtotal">$0.00</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6 small">Tax (10%):</div>
+                        <div class="col-6 text-end small" id="taxAmount">$0.00</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-6 fw-bold">Total:</div>
+                        <div class="col-6 text-end fw-bold" id="total">$0.00</div>
+                    </div>
+                    
+                    <input type="hidden" asp-for="Subtotal" id="subtotalInput" />
+                    <input type="hidden" asp-for="TaxAmount" id="taxAmountInput" />
+                    <input type="hidden" asp-for="Total" id="totalInput" />
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mt-3">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-info-circle text-info me-2"></i>Quick Tips
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li class="d-flex align-items-start mb-2">
+                            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+                            <span class="small">Select customer first</span>
+                        </li>
+                        <li class="d-flex align-items-start mb-2">
+                            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+                            <span class="small">Add items from inventory</span>
+                        </li>
+                        <li class="d-flex align-items-start mb-2">
+                            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+                            <span class="small">Tax is calculated automatically</span>
+                        </li>
+                        <li class="d-flex align-items-start">
+                            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+                            <span class="small">Invoice number auto-generates</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="d-flex justify-content-between mt-4">
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-x-circle me-2"></i>Cancel
+        </a>
+        <button type="submit" class="btn btn-primary btn-sm">
+            <i class="bi bi-check-circle me-2"></i>Create Invoice
+        </button>
+    </div>
+</form>
+
+<!-- Invoice Item Template -->
+<template id="invoiceItemTemplate">
+    <div class="invoice-item border rounded p-3 mb-3">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label small fw-medium">Item *</label>
+                <select class="form-select form-select-sm item-select" name="InvoiceItems[{index}].InventoryId" required>
+                    <option value="">Select Item</option>
+                    @if (inventory != null)
+                    {
+                        @foreach (var item in inventory)
+                        {
+                            <option value="@item.Id" data-price="@item.Price" data-name="@item.Name">
+                                @item.Name - @item.Price.ToString("0.00")
+                            </option>
+                        }
+                    }
+                </select>
+                <input type="hidden" class="item-name" name="InvoiceItems[{index}].ItemName" />
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small fw-medium">Quantity *</label>
+                <input type="number" class="form-control form-control-sm item-quantity" name="InvoiceItems[{index}].Quantity" 
+                       min="1" value="1" required>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small fw-medium">Price</label>
+                <input type="number" step="0.01" class="form-control form-control-sm item-price" name="InvoiceItems[{index}].UnitPrice" 
+                       readonly>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small fw-medium">Total</label>
+                <input type="number" step="0.01" class="form-control form-control-sm item-total" name="InvoiceItems[{index}].Total" readonly>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeInvoiceItem(this)">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</template>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        let itemIndex = 0;
+        
+        $(document).ready(function() {
+            // Add first item by default
+            addInvoiceItem();
+            
+            // Handle customer selection change
+            $('#CustomerId').change(function() {
+                const customerId = $(this).val();
+                console.log('Customer selection changed to:', customerId);
+                
+                // Update debug information
+                $('#selectedCustomerDebug').text(customerId || 'None');
+                
+                if (customerId) {
+                    loadSelectedJobs(customerId);
+                    loadCompletedJobs(customerId);
+                    loadAvailableJobs(customerId);
+                } else {
+                    hideSelectedJobs();
+                    hideCompletedJobs();
+                    hideAvailableJobs();
+                }
+            });
+            
+            // Auto-load jobs if customer is pre-selected
+            setTimeout(function() {
+                const preSelectedCustomerId = $('#CustomerId').val();
+                console.log('Checking for pre-selected customer:', preSelectedCustomerId);
+                
+                // Update debug information
+                $('#selectedCustomerDebug').text(preSelectedCustomerId || 'None');
+                
+                if (preSelectedCustomerId && preSelectedCustomerId !== '' && preSelectedCustomerId !== '0') {
+                    console.log('Customer pre-selected, loading jobs for customer ID:', preSelectedCustomerId);
+                    loadSelectedJobs(preSelectedCustomerId);
+                    loadCompletedJobs(preSelectedCustomerId);
+                    loadAvailableJobs(preSelectedCustomerId);
+                } else {
+                    console.log('No customer pre-selected or customer ID is 0');
+                }
+            }, 100); // Small delay to ensure DOM is ready
+            
+            // Handle job list checkbox change
+            $('#includeJobListItems').change(function() {
+                if ($(this).is(':checked')) {
+                    $('#selectedJobsList').show();
+                } else {
+                    $('#selectedJobsList').hide();
+                }
+                calculateTotals();
+            });
+
+            // Handle completed jobs checkbox change
+            $('#includeCompletedJobs').change(function() {
+                if ($(this).is(':checked')) {
+                    $('#completedJobsList').show();
+                } else {
+                    $('#completedJobsList').hide();
+                }
+                calculateTotals();
+            });
+
+            // Handle available jobs checkbox change
+            $('#includeAvailableJobs').change(function() {
+                if ($(this).is(':checked')) {
+                    $('#availableJobsList').show();
+                } else {
+                    $('#availableJobsList').hide();
+                }
+                calculateTotals();
+            });
+        });
+        
+        function addInvoiceItem() {
+            const template = document.getElementById('invoiceItemTemplate');
+            const container = document.getElementById('invoiceItems');
+            const clone = template.content.cloneNode(true);
+            
+            // Update index placeholders
+            clone.querySelectorAll('[name*="{index}"]').forEach(element => {
+                element.name = element.name.replace('{index}', itemIndex);
+            });
+            
+            container.appendChild(clone);
+            itemIndex++;
+            
+            // Add event listeners to new item
+            const newItem = container.lastElementChild;
+            setupItemEventListeners(newItem);
+        }
+        
+        function removeInvoiceItem(button) {
+            const item = button.closest('.invoice-item');
+            item.remove();
+            calculateTotals();
+        }
+        
+        function setupItemEventListeners(item) {
+            const select = item.querySelector('.item-select');
+            const quantity = item.querySelector('.item-quantity');
+            const price = item.querySelector('.item-price');
+            const total = item.querySelector('.item-total');
+            const itemName = item.querySelector('.item-name');
+            
+            select.addEventListener('change', function() {
+                const option = this.options[this.selectedIndex];
+                if (option.value) {
+                    price.value = option.dataset.price;
+                    itemName.value = option.dataset.name;
+                    calculateItemTotal(quantity, price, total);
+                }
+            });
+            
+            quantity.addEventListener('input', function() {
+                calculateItemTotal(quantity, price, total);
+            });
+        }
+        
+        function calculateItemTotal(quantity, price, total) {
+            const qty = parseFloat(quantity.value) || 0;
+            const prc = parseFloat(price.value) || 0;
+            total.value = (qty * prc).toFixed(2);
+            calculateTotals();
+        }
+        
+        function calculateTotals() {
+            let inventorySubtotal = 0;
+            document.querySelectorAll('.item-total').forEach(input => {
+                inventorySubtotal += parseFloat(input.value) || 0;
+            });
+            
+            // Calculate job totals from the displayed job sections
+            let selectedJobsTotal = 0;
+            let completedJobsTotal = 0;
+            let availableJobsTotal = 0;
+
+            // Calculate selected jobs total
+            if ($('#includeJobListItems').is(':checked')) {
+                $('#selectedJobsList .border').each(function() {
+                    const priceText = $(this).find('strong').text();
+                    const price = parseFloat(priceText.replace('$', '')) || 0;
+                    selectedJobsTotal += price;
+                });
+            }
+
+            // Calculate completed jobs total
+            if ($('#includeCompletedJobs').is(':checked')) {
+                $('#completedJobsList .border').each(function() {
+                    const priceText = $(this).find('strong').text();
+                    const price = parseFloat(priceText.replace('$', '')) || 0;
+                    completedJobsTotal += price;
+                });
+            }
+
+            // Calculate available jobs total
+            if ($('#includeAvailableJobs').is(':checked')) {
+                $('#availableJobsList .border').each(function() {
+                    const priceText = $(this).find('strong').text();
+                    const price = parseFloat(priceText.replace('$', '')) || 0;
+                    availableJobsTotal += price;
+                });
+            }
+            
+            const subtotal = inventorySubtotal + selectedJobsTotal + completedJobsTotal + availableJobsTotal;
+            const taxRate = 0.10; // 10%
+            const taxAmount = subtotal * taxRate;
+            const total = subtotal + taxAmount;
+            
+            // Update display
+            document.getElementById('inventorySubtotal').textContent = '$' + inventorySubtotal.toFixed(2);
+            
+            if (selectedJobsTotal > 0) {
+                document.getElementById('selectedJobsRow').style.display = 'flex';
+                document.getElementById('selectedJobsTotal').textContent = '$' + selectedJobsTotal.toFixed(2);
+            } else {
+                document.getElementById('selectedJobsRow').style.display = 'none';
+            }
+            
+            if (completedJobsTotal > 0) {
+                document.getElementById('completedJobsRow').style.display = 'flex';
+                document.getElementById('completedJobsTotal').textContent = '$' + completedJobsTotal.toFixed(2);
+            } else {
+                document.getElementById('completedJobsRow').style.display = 'none';
+            }
+            
+            if (availableJobsTotal > 0) {
+                document.getElementById('availableJobsRow').style.display = 'flex';
+                document.getElementById('availableJobsTotal').textContent = '$' + availableJobsTotal.toFixed(2);
+            } else {
+                document.getElementById('availableJobsRow').style.display = 'none';
+            }
+            
+            document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+            document.getElementById('taxAmount').textContent = '$' + taxAmount.toFixed(2);
+            document.getElementById('total').textContent = '$' + total.toFixed(2);
+            
+            document.getElementById('subtotalInput').value = subtotal.toFixed(2);
+            document.getElementById('taxAmountInput').value = taxAmount.toFixed(2);
+            document.getElementById('totalInput').value = total.toFixed(2);
+        }
+        
+        // Load selected jobs for customer
+        function loadSelectedJobs(customerId) {
+            $.ajax({
+                url: '@Url.Action("GetSelectedJobs", "Invoice")',
+                type: 'GET',
+                data: { customerId: customerId },
+                success: function(jobs) {
+                    if (jobs && jobs.length > 0) {
+                        displaySelectedJobs(jobs);
+                        $('#selectedJobsSection').show();
+                    } else {
+                        hideSelectedJobs();
+                    }
+                    calculateTotals();
+                },
+                error: function() {
+                    hideSelectedJobs();
+                    calculateTotals();
+                }
+            });
+        }
+        
+        // Display selected jobs
+        function displaySelectedJobs(jobs) {
+            const container = $('#selectedJobsList');
+            container.empty();
+            
+            jobs.forEach(function(job) {
+                const jobHtml = `
+                    <div class="border rounded p-3 mb-2">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h6 class="mb-1">${job.jobName}</h6>
+                                <small class="text-muted">${job.description || 'No description'}</small>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="badge bg-warning rounded-pill small">Selected</span>
+                            </div>
+                            <div class="col-md-2">
+                                <strong>$${job.price.toFixed(2)}</strong>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="text-muted small">1 pcs</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.append(jobHtml);
+            });
+        }
+        
+        // Hide selected jobs section
+        function hideSelectedJobs() {
+            $('#selectedJobsSection').hide();
+            $('#selectedJobsList').empty();
+            $('#includeJobListItems').prop('checked', false);
+        }
+
+        // Load completed jobs for customer
+        function loadCompletedJobs(customerId) {
+            $.ajax({
+                url: '@Url.Action("GetCompletedJobs", "Invoice")',
+                type: 'GET',
+                data: { customerId: customerId },
+                success: function(jobs) {
+                    if (jobs && jobs.length > 0) {
+                        displayCompletedJobs(jobs);
+                        $('#completedJobsSection').show();
+                    } else {
+                        hideCompletedJobs();
+                    }
+                    calculateTotals();
+                },
+                error: function() {
+                    hideCompletedJobs();
+                    calculateTotals();
+                }
+            });
+        }
+        
+        // Display completed jobs
+        function displayCompletedJobs(jobs) {
+            const container = $('#completedJobsList');
+            container.empty();
+            
+            jobs.forEach(function(job) {
+                const jobHtml = `
+                    <div class="border rounded p-3 mb-2">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h6 class="mb-1">${job.jobName} <span class="badge bg-success rounded-pill small">Completed</span></h6>
+                                <small class="text-muted">${job.description || 'No description'}</small>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="text-success small">
+                                    <i class="bi bi-check-circle"></i> Completed
+                                </span>
+                            </div>
+                            <div class="col-md-2">
+                                <strong>$${job.price.toFixed(2)}</strong>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="text-muted small">1 pcs</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.append(jobHtml);
+            });
+        }
+        
+        // Hide completed jobs section
+        function hideCompletedJobs() {
+            $('#completedJobsSection').hide();
+            $('#completedJobsList').empty();
+            $('#includeCompletedJobs').prop('checked', false);
+        }
+
+        // Load available jobs for customer
+        function loadAvailableJobs(customerId) {
+            $.ajax({
+                url: '@Url.Action("GetAllAvailableJobs", "Invoice")',
+                type: 'GET',
+                data: { customerId: customerId },
+                success: function(jobs) {
+                    if (jobs && jobs.length > 0) {
+                        displayAvailableJobs(jobs);
+                        $('#availableJobsSection').show();
+                    } else {
+                        hideAvailableJobs();
+                    }
+                    calculateTotals();
+                },
+                error: function() {
+                    hideAvailableJobs();
+                    calculateTotals();
+                }
+            });
+        }
+        
+        // Display available jobs
+        function displayAvailableJobs(jobs) {
+            const container = $('#availableJobsList');
+            container.empty();
+
+            jobs.forEach(function(job) {
+                const jobHtml = `
+                    <div class="border rounded p-3 mb-2">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h6 class="mb-1">${job.jobName}</h6>
+                                <small class="text-muted">${job.description || 'No description'}</small>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="badge bg-info rounded-pill small">Available</span>
+                            </div>
+                            <div class="col-md-2">
+                                <strong>$${job.price.toFixed(2)}</strong>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="text-muted small">1 pcs</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.append(jobHtml);
+            });
+        }
+        
+        // Hide available jobs section
+        function hideAvailableJobs() {
+            $('#availableJobsSection').hide();
+            $('#availableJobsList').empty();
+            $('#includeAvailableJobs').prop('checked', false);
+        }
+        
+        // Get status badge class
+        function getStatusBadgeClass(status) {
+            switch(status) {
+                case 'Pending': return 'warning';
+                case 'InProgress': return 'info';
+                case 'Completed': return 'success';
+                case 'Cancelled': return 'danger';
+                default: return 'secondary';
+            }
+        }
+        
+        // Form validation before submission
+        document.getElementById('invoiceForm').addEventListener('submit', function(e) {
+            const items = document.querySelectorAll('.invoice-item');
+            const includeJobs = $('#includeJobListItems').is(':checked');
+            const includeCompletedJobs = $('#includeCompletedJobs').is(':checked');
+            const includeAvailableJobs = $('#includeAvailableJobs').is(':checked');
+            
+            if (items.length === 0 && !includeJobs && !includeCompletedJobs && !includeAvailableJobs) {
+                e.preventDefault();
+                alert('Please add at least one item to the invoice, include selected jobs, include completed jobs, or include available jobs.');
+                return false;
+            }
+            
+            let hasValidItems = false;
+            items.forEach(item => {
+                const select = item.querySelector('.item-select');
+                const quantity = item.querySelector('.item-quantity');
+                if (select.value && quantity.value && parseFloat(quantity.value) > 0) {
+                    hasValidItems = true;
+                }
+            });
+            
+            if (!hasValidItems && !includeJobs && !includeCompletedJobs && !includeAvailableJobs) {
+                e.preventDefault();
+                alert('Please ensure all invoice items have valid selections and quantities, include selected jobs, include completed jobs, or include available jobs.');
+                return false;
+            }
+        });
+    </script>
+}
+
+<style>
+.form-control-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+.form-label { margin-bottom: 0.25rem; }
+.card { transition: transform 0.2s ease-in-out; }
+.card:hover { transform: translateY(-1px); }
+.alert-sm { padding: 0.5rem 0.75rem; font-size: 0.875rem; }
+.btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+.badge { font-size: 0.75rem; font-weight: 500; }
+</style> 

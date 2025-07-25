@@ -1,0 +1,357 @@
+@model Billing_Software.Models.Invoice
+@{
+    ViewData["Title"] = "Edit Invoice";
+    var customers = ViewBag.Customers as IEnumerable<Billing_Software.Models.Customer>;
+    var inventory = ViewBag.Inventory as IEnumerable<Billing_Software.Models.Inventory>;
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="h4 mb-1 fw-bold text-dark">Edit Invoice</h2>
+        <p class="text-muted small mb-0">Update invoice information</p>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-2"></i>Back to List
+    </a>
+</div>
+
+<form asp-action="Edit" method="post" id="invoiceForm">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="CreatedDate" />
+    
+    <div class="row g-4">
+        <!-- Invoice Details -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-receipt text-primary me-2"></i>Invoice Information
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger alert-sm" role="alert"></div>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label asp-for="CustomerId" class="form-label small fw-medium">Customer *</label>
+                            <select asp-for="CustomerId" class="form-select form-select-sm" required>
+                                <option value="">Select Customer</option>
+                                @if (customers != null)
+                                {
+                                    @foreach (var customer in customers.Where(c => c.IsActive))
+                                    {
+                                        <option value="@customer.Id" selected="@(customer.Id == Model.CustomerId)">
+                                            @customer.Name - @customer.Phone
+                                        </option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="CustomerId" class="text-danger small"></span>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label asp-for="InvoiceNumber" class="form-label small fw-medium">Invoice Number</label>
+                            <input asp-for="InvoiceNumber" class="form-control form-control-sm" readonly>
+                            <span asp-validation-for="InvoiceNumber" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-6">
+                            <label asp-for="InvoiceDate" class="form-label small fw-medium">Invoice Date *</label>
+                            <input asp-for="InvoiceDate" type="date" class="form-control form-control-sm" required>
+                            <span asp-validation-for="InvoiceDate" class="text-danger small"></span>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label asp-for="DueDate" class="form-label small fw-medium">Due Date *</label>
+                            <input asp-for="DueDate" type="date" class="form-control form-control-sm" required>
+                            <span asp-validation-for="DueDate" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <label asp-for="Notes" class="form-label small fw-medium">Notes</label>
+                        <textarea asp-for="Notes" class="form-control form-control-sm" rows="3" placeholder="Additional notes for the invoice"></textarea>
+                        <span asp-validation-for="Notes" class="text-danger small"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Invoice Items -->
+            <div class="card border-0 shadow-sm mt-3">
+                <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-list text-primary me-2"></i>Invoice Items
+                    </h6>
+                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="addInvoiceItem()">
+                        <i class="bi bi-plus me-1"></i>Add Item
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div id="invoiceItems">
+                        @if (Model.InvoiceItems != null && Model.InvoiceItems.Any())
+                        {
+                            var itemsList = Model.InvoiceItems.ToList();
+                            for (int i = 0; i < itemsList.Count; i++)
+                            {
+                                <div class="invoice-item border rounded p-3 mb-3">
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <label class="form-label small fw-medium">Item *</label>
+                                            <select class="form-select form-select-sm item-select" name="InvoiceItems[@i].InventoryId" required>
+                                                <option value="">Select Item</option>
+                                                @if (inventory != null)
+                                                {
+                                                    @foreach (var item in inventory)
+                                                    {
+                                                                                    <option value="@item.Id" data-price="@item.Price" data-name="@item.Name" 
+                                    selected="@(itemsList[i].InventoryId == item.Id)">
+                                @item.Name - @item.Price.ToString("0.00")
+                            </option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label small fw-medium">Quantity *</label>
+                                            <input type="number" class="form-control form-control-sm item-quantity" name="InvoiceItems[@i].Quantity" 
+                                                   min="1" value="@itemsList[i].Quantity" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label small fw-medium">Price</label>
+                                            <input type="number" step="0.01" class="form-control form-control-sm item-price" name="InvoiceItems[@i].UnitPrice" 
+                                                   value="@itemsList[i].UnitPrice" readonly>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label small fw-medium">Total</label>
+                                            <input type="number" step="0.01" class="form-control form-control-sm item-total" name="InvoiceItems[@i].Total" 
+                                                   value="@itemsList[i].Total" readonly>
+                                        </div>
+                                        <div class="col-md-2 d-flex align-items-end">
+                                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeInvoiceItem(this)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invoice Summary -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-calculator text-primary me-2"></i>Invoice Summary
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-6 small">Subtotal:</div>
+                        <div class="col-6 text-end small" id="subtotal">@Model.Subtotal.ToString("0.00")</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6 small">Tax (10%):</div>
+                        <div class="col-6 text-end small" id="taxAmount">@Model.TaxAmount.ToString("0.00")</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-6 fw-bold">Total:</div>
+                        <div class="col-6 text-end fw-bold" id="total">@Model.Total.ToString("0.00")</div>
+                    </div>
+                    
+                    <input type="hidden" asp-for="Subtotal" id="subtotalInput" />
+                    <input type="hidden" asp-for="TaxAmount" id="taxAmountInput" />
+                    <input type="hidden" asp-for="Total" id="totalInput" />
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mt-3">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-info-circle text-info me-2"></i>Invoice Status
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-2">
+                        <label class="form-label small fw-medium text-muted">Current Status</label>
+                        <div>
+                            @{
+                                var statusClass = Model.Status.ToString().ToLower() switch
+                                {
+                                    "paid" => "bg-success",
+                                    "unpaid" => "bg-warning",
+                                    "overdue" => "bg-danger",
+                                    _ => "bg-secondary"
+                                };
+                            }
+                            <span class="badge @statusClass rounded-pill small">@Model.Status</span>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label small fw-medium text-muted">Created</label>
+                        <div class="small">@Model.CreatedDate.ToString("MMM dd, yyyy HH:mm")</div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label small fw-medium text-muted">Last Modified</label>
+                        <div class="small">@(Model.LastModified?.ToString("MMM dd, yyyy HH:mm") ?? "Not modified")</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="d-flex justify-content-between mt-4">
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-x-circle me-2"></i>Cancel
+        </a>
+        <button type="submit" class="btn btn-primary btn-sm">
+            <i class="bi bi-check-circle me-2"></i>Update Invoice
+        </button>
+    </div>
+</form>
+
+<!-- Invoice Item Template -->
+<template id="invoiceItemTemplate">
+    <div class="invoice-item border rounded p-3 mb-3">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label small fw-medium">Item *</label>
+                <select class="form-select form-select-sm item-select" name="InvoiceItems[{index}].InventoryId" required>
+                    <option value="">Select Item</option>
+                    @if (inventory != null)
+                    {
+                        @foreach (var item in inventory)
+                        {
+                            <option value="@item.Id" data-price="@item.Price" data-name="@item.Name">
+                                @item.Name - @item.Price.ToString("0.00")
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small fw-medium">Quantity *</label>
+                <input type="number" class="form-control form-control-sm item-quantity" name="InvoiceItems[{index}].Quantity" 
+                       min="1" value="1" required>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small fw-medium">Price</label>
+                <input type="number" step="0.01" class="form-control form-control-sm item-price" name="InvoiceItems[{index}].UnitPrice" readonly>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small fw-medium">Total</label>
+                <input type="number" step="0.01" class="form-control form-control-sm item-total" name="InvoiceItems[{index}].Total" readonly>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeInvoiceItem(this)">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</template>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        let itemIndex = @(Model.InvoiceItems?.Count ?? 0);
+        
+        $(document).ready(function() {
+            // Setup event listeners for existing items
+            document.querySelectorAll('.invoice-item').forEach(item => {
+                setupItemEventListeners(item);
+            });
+            
+            // Calculate totals on load
+            calculateTotals();
+        });
+        
+        function addInvoiceItem() {
+            const template = document.getElementById('invoiceItemTemplate');
+            const container = document.getElementById('invoiceItems');
+            const clone = template.content.cloneNode(true);
+            
+            // Update index placeholders
+            clone.querySelectorAll('[name*="{index}"]').forEach(element => {
+                element.name = element.name.replace('{index}', itemIndex);
+            });
+            
+            container.appendChild(clone);
+            itemIndex++;
+            
+            // Add event listeners to new item
+            const newItem = container.lastElementChild;
+            setupItemEventListeners(newItem);
+        }
+        
+        function removeInvoiceItem(button) {
+            const item = button.closest('.invoice-item');
+            item.remove();
+            calculateTotals();
+        }
+        
+        function setupItemEventListeners(item) {
+            const select = item.querySelector('.item-select');
+            const quantity = item.querySelector('.item-quantity');
+            const price = item.querySelector('.item-price');
+            const total = item.querySelector('.item-total');
+            
+            select.addEventListener('change', function() {
+                const option = this.options[this.selectedIndex];
+                if (option.value) {
+                    price.value = option.dataset.price;
+                    calculateItemTotal(quantity, price, total);
+                }
+            });
+            
+            quantity.addEventListener('input', function() {
+                calculateItemTotal(quantity, price, total);
+            });
+        }
+        
+        function calculateItemTotal(quantity, price, total) {
+            const qty = parseFloat(quantity.value) || 0;
+            const prc = parseFloat(price.value) || 0;
+            total.value = (qty * prc).toFixed(2);
+            calculateTotals();
+        }
+        
+        function calculateTotals() {
+            let subtotal = 0;
+            document.querySelectorAll('.item-total').forEach(input => {
+                subtotal += parseFloat(input.value) || 0;
+            });
+            
+            const taxRate = 0.10; // 10%
+            const taxAmount = subtotal * taxRate;
+            const total = subtotal + taxAmount;
+            
+            document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+            document.getElementById('taxAmount').textContent = '$' + taxAmount.toFixed(2);
+            document.getElementById('total').textContent = '$' + total.toFixed(2);
+            
+            document.getElementById('subtotalInput').value = subtotal.toFixed(2);
+            document.getElementById('taxAmountInput').value = taxAmount.toFixed(2);
+            document.getElementById('totalInput').value = total.toFixed(2);
+        }
+    </script>
+}
+
+<style>
+.form-control-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+.form-label { margin-bottom: 0.25rem; }
+.card { transition: transform 0.2s ease-in-out; }
+.card:hover { transform: translateY(-1px); }
+.alert-sm { padding: 0.5rem 0.75rem; font-size: 0.875rem; }
+.btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+.badge { font-size: 0.75rem; font-weight: 500; }
+</style> 

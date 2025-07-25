@@ -1,0 +1,361 @@
+﻿@model Billing_Software.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="h4 mb-1 fw-bold text-dark">Dashboard</h2>
+        <p class="text-muted small mb-0">Welcome back! Here's your business overview</p>
+    </div>
+    <div class="d-flex gap-2">
+        <button class="btn btn-outline-secondary btn-sm" onclick="refreshDashboard()">
+            <i class="bi bi-arrow-clockwise"></i>
+        </button>
+        <span class="badge bg-success align-self-center">
+            <i class="bi bi-circle-fill me-1"></i>Live
+        </span>
+    </div>
+</div>
+
+<!-- Compact Statistics Grid -->
+<div class="row g-3 mb-4">
+    <div class="col-xl-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="bg-light rounded-circle p-3 border border-primary border-opacity-25">
+                            <i class="bi bi-currency-dollar text-primary fs-4"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="card-title text-muted small mb-1">Total Revenue</h6>
+                        <h4 class="mb-1 fw-bold">@Model.TotalRevenue.ToString("C")</h4>
+                        <small class="text-success">
+                            <i class="fas fa-arrow-up me-1"></i>12%
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="bg-light rounded-circle p-3 border border-success border-opacity-25">
+                            <i class="bi bi-receipt text-success fs-4"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="card-title text-muted small mb-1">Invoices</h6>
+                        <h4 class="mb-1 fw-bold">@Model.TotalInvoices</h4>
+                        <small class="text-success">
+                            <i class="fas fa-arrow-up me-1"></i>8%
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="bg-light rounded-circle p-3 border border-info border-opacity-25">
+                            <i class="bi bi-people text-info fs-4"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="card-title text-muted small mb-1">Customers</h6>
+                        <h4 class="mb-1 fw-bold">@Model.TotalCustomers</h4>
+                        <small class="text-success">
+                            <i class="fas fa-arrow-up me-1"></i>5%
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="bg-light rounded-circle p-3 border border-warning border-opacity-25">
+                            <i class="bi bi-exclamation-triangle text-warning fs-4"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="card-title text-muted small mb-1">Low Stock</h6>
+                        <h4 class="mb-1 fw-bold">@Model.LowStockItems</h4>
+                        <small class="text-danger">
+                            <i class="fas fa-arrow-down me-1"></i>Needs attention
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Compact Alerts Row -->
+@if (Model.PendingInvoices > 0 || Model.OverdueInvoices > 0 || Model.LowStockItems > 0 || Model.UpcomingServices > 0)
+{
+    <div class="row g-2 mb-4">
+        @if (Model.PendingInvoices > 0)
+        {
+            <div class="col-md-6 col-lg-3">
+                <div class="alert alert-info alert-sm d-flex align-items-center py-2 mb-0">
+                    <i class="bi bi-info-circle me-2"></i>
+                    <span class="small">@Model.PendingInvoices pending invoices</span>
+                </div>
+            </div>
+        }
+        @if (Model.OverdueInvoices > 0)
+        {
+            <div class="col-md-6 col-lg-3">
+                <div class="alert alert-danger alert-sm d-flex align-items-center py-2 mb-0">
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    <span class="small">@Model.OverdueInvoices overdue</span>
+                </div>
+            </div>
+        }
+        @if (Model.LowStockItems > 0)
+        {
+            <div class="col-md-6 col-lg-3">
+                <div class="alert alert-warning alert-sm d-flex align-items-center py-2 mb-0">
+                    <i class="bi bi-boxes me-2"></i>
+                    <span class="small">@Model.LowStockItems low stock</span>
+                </div>
+            </div>
+        }
+        @if (Model.UpcomingServices > 0)
+        {
+            <div class="col-md-6 col-lg-3">
+                <div class="alert alert-success alert-sm d-flex align-items-center py-2 mb-0">
+                    <i class="bi bi-tools me-2"></i>
+                    <span class="small">@Model.UpcomingServices upcoming services</span>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<!-- Main Content Grid -->
+<div class="row g-4">
+    <!-- Quick Actions -->
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-lightning text-warning me-2"></i>Quick Actions
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a asp-controller="Invoice" asp-action="Create" class="btn btn-primary btn-sm">
+                        <i class="bi bi-plus me-2"></i>Create Invoice
+                    </a>
+                    <a asp-controller="Customer" asp-action="Create" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-person-plus me-2"></i>Add Customer
+                    </a>
+                    <a asp-controller="Service" asp-action="Create" class="btn btn-outline-success btn-sm">
+                        <i class="bi bi-tools me-2"></i>Schedule Service
+                    </a>
+                    <a asp-controller="Inventory" asp-action="Create" class="btn btn-outline-warning btn-sm">
+                        <i class="bi bi-box-plus me-2"></i>Add Inventory
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Invoices -->
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-receipt text-primary me-2"></i>Recent Invoices
+                </h6>
+                <a asp-controller="Invoice" asp-action="Index" class="btn btn-outline-primary btn-sm">
+                    View All
+                </a>
+            </div>
+            <div class="card-body p-0">
+                @if (Model.RecentInvoices.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-sm mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="border-0 small">Invoice #</th>
+                                    <th class="border-0 small">Customer</th>
+                                    <th class="border-0 small">Amount</th>
+                                    <th class="border-0 small">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var invoice in Model.RecentInvoices.Take(5))
+                                {
+                                    <tr>
+                                        <td class="py-2">
+                                            <a asp-controller="Invoice" asp-action="Details" asp-route-id="@invoice.Id" 
+                                               class="text-decoration-none fw-medium">
+                                                @invoice.InvoiceNumber
+                                            </a>
+                                        </td>
+                                        <td class="py-2 small">@invoice.Customer?.Name</td>
+                                        <td class="py-2 fw-bold">@invoice.Total.ToString("C")</td>
+                                        <td class="py-2">
+                                            <span class="badge bg-@(invoice.Status.ToString().ToLower() == "paid" ? "success" : 
+                                                                   invoice.Status.ToString().ToLower() == "unpaid" ? "warning" : "secondary") rounded-pill small">
+                                                @invoice.Status
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-4">
+                        <i class="bi bi-receipt text-muted fa-2x mb-2"></i>
+                        <p class="text-muted small mb-0">No recent invoices</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Services Row -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-tools text-success me-2"></i>Recent Services
+                </h6>
+                <a asp-controller="Service" asp-action="Index" class="btn btn-outline-success btn-sm">
+                    View All
+                </a>
+            </div>
+            <div class="card-body p-0">
+                @if (Model.RecentServices.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-sm mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="border-0 small">Service</th>
+                                    <th class="border-0 small">Customer</th>
+                                    <th class="border-0 small">Date</th>
+                                    <th class="border-0 small">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var service in Model.RecentServices.Take(5))
+                                {
+                                    <tr>
+                                        <td class="py-2">
+                                            <a asp-controller="Service" asp-action="Details" asp-route-id="@service.Id" 
+                                               class="text-decoration-none fw-medium">
+                                                @service.ServiceType
+                                            </a>
+                                        </td>
+                                        <td class="py-2 small">@service.Customer?.Name</td>
+                                        <td class="py-2 small">@service.ServiceDate.ToString("MMM dd")</td>
+                                        <td class="py-2">
+                                            <span class="badge bg-@(service.Status.ToString().ToLower() == "completed" ? "success" : 
+                                                                   service.Status.ToString().ToLower() == "scheduled" ? "info" : "warning") rounded-pill small">
+                                                @service.Status
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-4">
+                        <i class="bi bi-tools text-muted fa-2x mb-2"></i>
+                        <p class="text-muted small mb-0">No recent services</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.alert-sm {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.table th {
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table td {
+    font-size: 0.875rem;
+}
+
+.badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.btn-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.fs-5 {
+    font-size: 1.25rem !important;
+}
+</style>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Auto-refresh dashboard every 60 seconds (reduced frequency)
+            setInterval(function() {
+                refreshDashboard();
+            }, 60000);
+        });
+
+        function refreshDashboard() {
+            // Show loading indicator
+            $('body').append('<div class="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-white bg-opacity-75" style="z-index: 9999;"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>');
+            
+            // Reload page after a short delay
+            setTimeout(function() {
+                location.reload();
+            }, 500);
+        }
+    </script>
+}

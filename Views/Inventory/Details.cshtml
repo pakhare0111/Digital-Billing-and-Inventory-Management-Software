@@ -1,0 +1,302 @@
+@model Billing_Software.Models.Inventory
+@{
+    ViewData["Title"] = "Inventory Details";
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="mb-1 fw-bold">
+            <i class="bi bi-box-seam text-info me-2"></i>Inventory Details
+        </h4>
+        <p class="text-muted small mb-0">View and manage inventory item information</p>
+    </div>
+    <div class="btn-group btn-group-sm">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning btn-sm">
+            <i class="bi bi-pencil me-1"></i>Edit
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left me-1"></i>Back to List
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Item Information -->
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-box-seam text-info me-2"></i>Item Information
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Name</label>
+                            <div class="fw-bold">@Model.Name</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Category</label>
+                            <div><span class="badge bg-info rounded-pill small">@Model.Category</span></div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">SKU</label>
+                            <div>@(Model.SKU ?? "Not set")</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Unit</label>
+                            <div>@(Model.Unit ?? "Not specified")</div>
+                        </div>
+                        @if (!string.IsNullOrEmpty(Model.Description))
+                        {
+                            <div class="mb-3">
+                                <label class="form-label small fw-medium text-muted">Description</label>
+                                <div class="small">@Model.Description</div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Current Stock</label>
+                            <div class="h5 @(Model.Quantity == 0 ? "text-danger" : Model.Quantity <= Model.MinStockLevel ? "text-warning" : "text-success")">
+                                @Model.Quantity @(Model.Unit ?? "units")
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Minimum Level</label>
+                            <div>@Model.MinStockLevel @(Model.Unit ?? "units")</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Price</label>
+                            <div class="fw-bold">@Model.Price.ToString("0.00")</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Total Value</label>
+                            <div class="fw-bold text-info">@((Model.Price * Model.Quantity).ToString("0.00"))</div>
+                        </div>
+                        @if (!string.IsNullOrEmpty(Model.Supplier))
+                        {
+                            <div class="mb-3">
+                                <label class="form-label small fw-medium text-muted">Supplier</label>
+                                <div><i class="bi bi-truck me-1"></i>@Model.Supplier</div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stock Status -->
+        <div class="card border-0 shadow-sm mt-3">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-exclamation-triangle text-info me-2"></i>Stock Status
+                </h6>
+            </div>
+            <div class="card-body">
+                @if (Model.Quantity == 0)
+                {
+                    <div class="alert alert-danger alert-sm">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-x-circle me-2 mt-1"></i>
+                            <div>
+                                <strong>Out of Stock</strong>
+                                <div class="small">This item is currently out of stock. Consider reordering.</div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (Model.Quantity <= Model.MinStockLevel)
+                {
+                    <div class="alert alert-warning alert-sm">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-exclamation-triangle me-2 mt-1"></i>
+                            <div>
+                                <strong>Low Stock Alert</strong>
+                                <div class="small">Stock level is below the minimum threshold. Consider reordering soon.</div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-success alert-sm">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-check-circle me-2 mt-1"></i>
+                            <div>
+                                <strong>Stock Level Good</strong>
+                                <div class="small">Stock level is above the minimum threshold.</div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Stock History (Placeholder) -->
+        <div class="card border-0 shadow-sm mt-3">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-clock-history text-info me-2"></i>Stock History
+                </h6>
+            </div>
+            <div class="card-body text-center text-muted py-4">
+                <i class="bi bi-graph-up display-6 mb-3"></i>
+                <p class="small mb-0">Stock history tracking will be implemented in future updates.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions and Stats -->
+    <div class="col-lg-4">
+        <!-- Stock Management -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-gear text-info me-2"></i>Stock Management
+                </h6>
+            </div>
+            <div class="card-body">
+                <form asp-action="UpdateStock" method="post">
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label small fw-medium">Update Stock Level</label>
+                        <input type="number" class="form-control form-control-sm" id="quantity" name="quantity" 
+                               value="@Model.Quantity" min="0" required>
+                        <small class="text-muted">Enter the new stock quantity</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm w-100">
+                        <i class="bi bi-check-circle me-1"></i>Update Stock
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="card border-0 shadow-sm mt-3">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-graph-up text-info me-2"></i>Quick Stats
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row text-center g-2">
+                    <div class="col-6">
+                        <div class="border rounded p-2 bg-light">
+                            <div class="h6 text-info mb-0">@Model.Quantity</div>
+                            <small class="text-muted">Current Stock</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="border rounded p-2 bg-light">
+                            <div class="h6 text-success mb-0">@Model.MinStockLevel</div>
+                            <small class="text-muted">Min Level</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="border rounded p-2 bg-light">
+                            <div class="h6 text-info mb-0">@Model.Price.ToString("0.00")</div>
+                            <small class="text-muted">Unit Price</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="border rounded p-2 bg-light">
+                            <div class="h6 text-warning mb-0">@((Model.Price * Model.Quantity).ToString("0.00"))</div>
+                            <small class="text-muted">Total Value</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Details -->
+        <div class="card border-0 shadow-sm mt-3">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-info-circle text-info me-2"></i>Item Details
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="mb-2">
+                    <label class="form-label small fw-medium text-muted">Created</label>
+                    <div class="small">@Model.CreatedDate.ToString("MMM dd, yyyy")</div>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label small fw-medium text-muted">Last Updated</label>
+                    <div class="small">@Model.LastUpdated?.ToString("MMM dd, yyyy")</div>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label small fw-medium text-muted">Status</label>
+                    <div>
+                        @if (Model.IsActive)
+                        {
+                            <span class="badge bg-success rounded-pill small">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary rounded-pill small">Inactive</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card border-0 shadow-sm mt-3">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-lightning text-info me-2"></i>Quick Actions
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-warning btn-sm">
+                        <i class="bi bi-pencil me-1"></i>Edit Item
+                    </a>
+                    @if (Model.Quantity <= Model.MinStockLevel)
+                    {
+                        <button type="button" class="btn btn-outline-danger btn-sm">
+                            <i class="bi bi-cart me-1"></i>Reorder
+                        </button>
+                    }
+                    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-list me-1"></i>View All Items
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success/Error Messages -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-sm alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-start">
+            <i class="bi bi-check-circle me-2 mt-1"></i>
+            <div>@TempData["SuccessMessage"]</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-sm alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-start">
+            <i class="bi bi-exclamation-triangle me-2 mt-1"></i>
+            <div>@TempData["ErrorMessage"]</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<style>
+    .card { transition: transform 0.2s ease-in-out; }
+    .card:hover { transform: translateY(-1px); }
+    .alert-sm { padding: 0.5rem 0.75rem; font-size: 0.875rem; }
+    .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .form-control-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .badge { font-size: 0.75rem; font-weight: 500; }
+</style> 

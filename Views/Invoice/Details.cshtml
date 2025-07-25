@@ -1,0 +1,436 @@
+@model Billing_Software.Models.Invoice
+@{
+    ViewData["Title"] = "Invoice Details";
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="h4 mb-1 fw-bold text-dark">Invoice Details</h2>
+        <p class="text-muted small mb-0">View and manage invoice information</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning btn-sm">
+            <i class="bi bi-pencil me-2"></i>Edit
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left me-2"></i>Back to List
+        </a>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Invoice Information -->
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-receipt text-primary me-2"></i>Invoice Information
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Invoice #</label>
+                            <div class="fw-bold">@Model.InvoiceNumber</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Date</label>
+                            <div>@Model.InvoiceDate.ToString("MMMM dd, yyyy")</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Due Date</label>
+                            <div>@(Model.DueDate?.ToString("MMMM dd, yyyy") ?? "Not set")</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Status</label>
+                            <div>
+                                @{
+                                    var statusClass = Model.Status.ToString().ToLower() switch
+                                    {
+                                        "paid" => "bg-success",
+                                        "unpaid" => "bg-warning",
+                                        "overdue" => "bg-danger",
+                                        _ => "bg-secondary"
+                                    };
+                                }
+                                <span class="badge @statusClass rounded-pill small">@Model.Status</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label small fw-medium text-muted">Customer Information</label>
+                            @if (Model.Customer != null)
+                            {
+                                <div class="mb-2">
+                                    <strong>Name:</strong> 
+                                    <a asp-controller="Customer" asp-action="Details" asp-route-id="@Model.CustomerId" class="text-decoration-none">
+                                        @Model.Customer.Name
+                                    </a>
+                                </div>
+                                <div class="mb-2">
+                                    <strong>Phone:</strong> 
+                                    <a href="tel:@Model.Customer.Phone" class="text-decoration-none">
+                                        @Model.Customer.Phone
+                                    </a>
+                                </div>
+                                @if (!string.IsNullOrEmpty(Model.Customer.Email))
+                                {
+                                    <div class="mb-2">
+                                        <strong>Email:</strong> 
+                                        <a href="mailto:@Model.Customer.Email" class="text-decoration-none">
+                                            @Model.Customer.Email
+                                        </a>
+                                    </div>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.Customer.Address))
+                                {
+                                    <div class="mb-2">
+                                        <strong>Address:</strong> @Model.Customer.Address
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="text-muted small">Customer information not available</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invoice Items -->
+        <div class="card border-0 shadow-sm mt-3">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-list text-primary me-2"></i>Invoice Items
+                </h6>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="border-0 small">Item</th>
+                                <th class="border-0 small">Quantity</th>
+                                <th class="border-0 small">Unit Price</th>
+                                <th class="border-0 small text-end">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.InvoiceItems != null && Model.InvoiceItems.Any())
+                            {
+                                @foreach (var item in Model.InvoiceItems)
+                                {
+                                    <tr>
+                                        <td class="py-2">
+                                            @if (item.Inventory != null)
+                                            {
+                                                @item.Inventory.Name
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted small">Item not found</span>
+                                            }
+                                        </td>
+                                        <td class="py-2">@item.Quantity</td>
+                                        <td class="py-2">@item.UnitPrice.ToString("0.00")</td>
+                                        <td class="py-2 text-end fw-bold">@item.Total.ToString("0.00")</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-center py-4 text-muted small">No items found</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.Notes))
+        {
+            <div class="card border-0 shadow-sm mt-3">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-sticky text-primary me-2"></i>Notes
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="mb-0 small">@Model.Notes</p>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Invoice Summary and Actions -->
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-calculator text-primary me-2"></i>Invoice Summary
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-6 small">Subtotal:</div>
+                    <div class="col-6 text-end small">@Model.Subtotal.ToString("0.00")</div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-6 small">Tax:</div>
+                    <div class="col-6 text-end small">@Model.TaxAmount.ToString("0.00")</div>
+                </div>
+                <hr>
+                <div class="row mb-3">
+                    <div class="col-6 fw-bold">Total:</div>
+                    <div class="col-6 text-end fw-bold">@Model.Total.ToString("0.00")</div>
+                </div>
+                @if (Model.Status == InvoiceStatus.Unpaid || Model.Status == InvoiceStatus.Overdue)
+                {
+                    <div class="row mb-2">
+                        <div class="col-6 small">Amount Paid:</div>
+                        <div class="col-6 text-end small">@Model.AmountPaid.ToString("0.00")</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6 fw-bold">Balance:</div>
+                        <div class="col-6 text-end fw-bold">@Model.Balance.ToString("0.00")</div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card border-0 shadow-sm mt-3">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-gear text-primary me-2"></i>Quick Actions
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="printInvoice()">
+                        <i class="bi bi-printer me-2"></i>Print Invoice
+                    </button>
+                    <button type="button" class="btn btn-outline-success btn-sm" onclick="downloadPDF()">
+                        <i class="bi bi-file-pdf me-2"></i>Download PDF
+                    </button>
+                    <form asp-action="SendEmail" method="post" style="display: inline;">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <button type="submit" class="btn btn-outline-info btn-sm">
+                            <i class="bi bi-envelope me-2"></i>Send via Email
+                        </button>
+                    </form>
+                    
+                    <!-- WhatsApp Actions -->
+                    @if (!string.IsNullOrEmpty(Model.Customer?.Phone))
+                    {
+                        <div class="border-top pt-2 mt-2">
+                            <small class="text-muted d-block mb-2">Send via WhatsApp:</small>
+                            
+                            <!-- Manual Method (Recommended) -->
+                            <form asp-action="SendWhatsAppManual" method="post" style="display: inline;">
+                                <input type="hidden" name="id" value="@Model.Id" />
+                                <button type="submit" class="btn btn-success btn-sm w-100 mb-1">
+                                    <i class="bi bi-link-45deg me-2"></i>Generate WhatsApp Link
+                                </button>
+                            </form>
+                            
+                            <!-- Automated Method (Advanced) -->
+                            <form asp-action="SendWhatsApp" method="post" style="display: inline;">
+                                <input type="hidden" name="id" value="@Model.Id" />
+                                <button type="submit" class="btn btn-outline-success btn-sm w-100 mb-1" onclick="return confirmWhatsAppSend()">
+                                    <i class="bi bi-whatsapp me-2"></i>Auto Send with PDF
+                                </button>
+                            </form>
+                            
+                            <!-- PDF Method -->
+                            <form asp-action="SendWhatsAppWithPdf" method="post" style="display: inline;">
+                                <input type="hidden" name="id" value="@Model.Id" />
+                                <button type="submit" class="btn btn-outline-info btn-sm w-100" onclick="return confirmWhatsAppSend()">
+                                    <i class="bi bi-file-earmark-pdf me-2"></i>Send with PDF
+                                </button>
+                            </form>
+                            
+                            <!-- Test PDF Generation -->
+                            <a asp-action="TestPdf" asp-route-id="@Model.Id" class="btn btn-outline-warning btn-sm w-100 mt-1">
+                                <i class="bi bi-file-earmark-check me-2"></i>Test PDF Generation
+                            </a>
+                        </div>
+                        
+                        <!-- WhatsApp URL Display -->
+                        @if (TempData["WhatsAppUrl"] != null)
+                        {
+                            <div class="border-top pt-2 mt-2">
+                                <small class="text-success d-block mb-2">
+                                    <i class="bi bi-check-circle me-1"></i>WhatsApp Link Ready
+                                </small>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control form-control-sm" 
+                                           value="@TempData["WhatsAppUrl"]" readonly id="whatsappUrl">
+                                    <button class="btn btn-outline-primary btn-sm" type="button" onclick="copyWhatsAppUrl()">
+                                        <i class="bi bi-clipboard"></i>
+                                    </button>
+                                    <a href="@TempData["WhatsAppUrl"]" target="_blank" class="btn btn-success btn-sm">
+                                        <i class="bi bi-whatsapp"></i> Open WhatsApp
+                                    </a>
+                                </div>
+                                <small class="text-muted d-block mt-1">
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    Click "Open WhatsApp" to send the invoice message
+                                </small>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="border-top pt-2 mt-2">
+                            <small class="text-warning d-block">
+                                <i class="bi bi-exclamation-triangle me-1"></i>
+                                Customer phone number required for WhatsApp
+                            </small>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- WhatsApp Status -->
+        <div class="card border-0 shadow-sm mt-3">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-whatsapp text-success me-2"></i>WhatsApp Status
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="bg-success bg-opacity-10 rounded-circle p-2">
+                            <i class="bi bi-check-circle text-success"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-2">
+                        <small class="text-muted">WhatsApp Web Ready</small>
+                        <div class="small">Scan QR code when prompted</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Information -->
+        @if (Model.Status == InvoiceStatus.Paid)
+        {
+            <div class="card border-0 shadow-sm mt-3">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-credit-card text-primary me-2"></i>Payment Information
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-2">
+                        <label class="form-label small fw-medium text-muted">Payment Date</label>
+                        <div>@Model.PaymentDate?.ToString("MMMM dd, yyyy")</div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label small fw-medium text-muted">Payment Method</label>
+                        <div>@Model.PaymentMethod</div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label small fw-medium text-muted">Amount Paid</label>
+                        <div class="fw-bold">@Model.AmountPaid.ToString("0.00")</div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Success/Error Messages -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-sm alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-start">
+            <i class="bi bi-check-circle me-2 mt-1"></i>
+            <div>@TempData["SuccessMessage"]</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-sm alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-start">
+            <i class="bi bi-exclamation-triangle me-2 mt-1"></i>
+            <div>@TempData["ErrorMessage"]</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        function printInvoice() {
+            window.print();
+        }
+        
+        function downloadPDF() {
+            // TODO: Implement PDF generation
+            alert('PDF download functionality will be implemented soon.');
+        }
+
+        function confirmWhatsAppSend() {
+            return confirm('This will open WhatsApp Web and send the invoice. Make sure WhatsApp Web is ready. Continue?');
+        }
+
+        function copyWhatsAppUrl() {
+            const whatsappUrl = document.getElementById('whatsappUrl').value;
+            navigator.clipboard.writeText(whatsappUrl).then(() => {
+                alert('WhatsApp URL copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy WhatsApp URL: ', err);
+                alert('Failed to copy WhatsApp URL.');
+            });
+        }
+
+        // Check WhatsApp status on page load
+        $(document).ready(function() {
+            checkWhatsAppStatus();
+        });
+
+        function checkWhatsAppStatus() {
+            $.get('/Invoice/WhatsAppStatus', function(data) {
+                if (data.isReady) {
+                    console.log('WhatsApp Web is ready');
+                } else {
+                    console.log('WhatsApp Web needs setup');
+                }
+            });
+        }
+    </script>
+    
+    <style>
+        .table th { font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .table td { font-size: 0.875rem; }
+        .badge { font-size: 0.75rem; font-weight: 500; }
+        .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+        .card { transition: transform 0.2s ease-in-out; }
+        .card:hover { transform: translateY(-1px); }
+        .alert-sm { padding: 0.5rem 0.75rem; font-size: 0.875rem; }
+        
+        @@media print {
+            .btn-group, .card:not(:first-child), .alert {
+                display: none !important;
+            }
+            .card {
+                border: none !important;
+                box-shadow: none !important;
+            }
+        }
+    </style>
+} 

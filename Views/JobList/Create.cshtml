@@ -1,0 +1,97 @@
+@model Billing_Software.Models.JobList
+@{
+    ViewData["Title"] = "Create Job";
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="mb-1 fw-bold">
+            <i class="bi bi-plus-circle text-info me-2"></i>Create New Job
+        </h4>
+        <p class="text-muted small mb-0">Add a new job to the master list</p>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i>Back to List
+    </a>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-transparent border-0 pb-0">
+        <h6 class="mb-0 fw-bold">
+            <i class="bi bi-clipboard-data text-info me-2"></i>Job Details
+        </h6>
+    </div>
+    <div class="card-body">
+        <form method="post" action="/JobList/Create">
+            <div class="row g-3">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="JobName" class="form-label small fw-medium">Job Name *</label>
+                        <input type="text" id="JobName" name="JobName" class="form-control form-control-sm" placeholder="Enter job name" required />
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="Description" class="form-label small fw-medium">Description</label>
+                        <textarea id="Description" name="Description" class="form-control form-control-sm" rows="3" placeholder="Enter job description"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="Price" class="form-label small fw-medium">Price *</label>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">$</span>
+                            <input type="number" id="Price" name="Price" class="form-control form-control-sm" step="0.01" min="0" placeholder="0.00" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-3">
+
+            <div class="d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-x-circle me-1"></i>Cancel
+                </a>
+                <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="bi bi-check-circle me-1"></i>Create Job
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Form submit handler
+            $('form').on('submit', function(e) {
+                console.log('=== FORM SUBMIT EVENT TRIGGERED ===');
+                console.log('Form submitted');
+                console.log('JobName:', $('#JobName').val());
+                console.log('Description:', $('#Description').val());
+                console.log('Price:', $('#Price').val());
+                
+                // Check if form is valid
+                if (!this.checkValidity()) {
+                    console.log('Form validation failed');
+                    e.preventDefault();
+                    return false;
+                }
+                
+                console.log('Form is valid, allowing submission');
+            });
+        });
+    </script>
+    
+    <style>
+        .card { transition: transform 0.2s ease-in-out; }
+        .card:hover { transform: translateY(-1px); }
+        .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+        .form-control-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+        .input-group-sm > .form-control, .input-group-sm > .form-select, .input-group-sm > .input-group-text { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    </style>
+} 

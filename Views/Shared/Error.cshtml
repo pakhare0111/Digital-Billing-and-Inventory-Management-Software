@@ -1,0 +1,126 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="h4 mb-1 fw-bold text-danger">Error</h2>
+        <p class="text-muted small mb-0">An error occurred while processing your request</p>
+    </div>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+    </a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold text-danger">
+                    <i class="bi bi-exclamation-triangle me-2"></i>Error Details
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <i class="bi bi-exclamation-triangle text-danger" style="font-size: 4rem;"></i>
+                    <h4 class="text-danger mt-3">Oops! Something went wrong</h4>
+                    <p class="text-muted">We're sorry, but an error occurred while processing your request.</p>
+                </div>
+
+                @if (Model.ShowRequestId)
+                {
+                    <div class="alert alert-info alert-sm" role="alert">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-info-circle me-2 mt-1"></i>
+                            <div>
+                                <strong>Request ID:</strong> <code class="small">@Model.RequestId</code>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="mt-4">
+                    <h6 class="fw-bold mb-3">What you can do:</h6>
+                    <ul class="list-unstyled">
+                        <li class="d-flex align-items-start mb-2">
+                            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+                            <span class="small">Try refreshing the page</span>
+                        </li>
+                        <li class="d-flex align-items-start mb-2">
+                            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+                            <span class="small">Go back to the previous page</span>
+                        </li>
+                        <li class="d-flex align-items-start mb-2">
+                            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+                            <span class="small">Return to the dashboard</span>
+                        </li>
+                        <li class="d-flex align-items-start">
+                            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+                            <span class="small">Contact support if the problem persists</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-sm me-2">
+                        <i class="bi bi-house me-2"></i>Go to Dashboard
+                    </a>
+                    <button onclick="history.back()" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-arrow-left me-2"></i>Go Back
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        @if (Model.ShowRequestId)
+        {
+            <div class="card border-0 shadow-sm mt-4">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <h6 class="mb-0 fw-bold text-warning">
+                        <i class="bi bi-gear me-2"></i>Development Information
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning alert-sm" role="alert">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-exclamation-triangle me-2 mt-1"></i>
+                            <div>
+                                <strong>Development Mode:</strong> This environment displays detailed error information.
+                                <br><small class="text-muted">For production, set ASPNETCORE_ENVIRONMENT to "Production"</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+.alert-sm {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-1px);
+}
+
+.btn-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+code {
+    background-color: #f8f9fa;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+}
+</style>

@@ -1,0 +1,261 @@
+@model Billing_Software.Models.Configuration.EmailSettings
+@{
+    ViewData["Title"] = "Email Settings";
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="mb-1 fw-bold">
+            <i class="bi bi-envelope text-success me-2"></i>Email Settings
+        </h4>
+        <p class="text-muted small mb-0">Configure email server settings and notification preferences</p>
+    </div>
+    <div class="btn-group btn-group-sm" role="group">
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left me-1"></i>Back to Settings
+        </a>
+        <button type="submit" form="emailSettingsForm" class="btn btn-success btn-sm">
+            <i class="bi bi-check-circle me-1"></i>Save Settings
+        </button>
+    </div>
+</div>
+
+<!-- Email Configuration -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-gear text-success me-2"></i>SMTP Configuration
+                </h6>
+            </div>
+            <div class="card-body">
+                <form id="emailSettingsForm" method="post">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">SMTP Server</label>
+                            <input type="text" class="form-control form-control-sm" asp-for="SmtpServer" placeholder="e.g., smtp.gmail.com">
+                            <span asp-validation-for="SmtpServer" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">SMTP Port</label>
+                            <input type="number" class="form-control form-control-sm" asp-for="SmtpPort" placeholder="e.g., 587">
+                            <span asp-validation-for="SmtpPort" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">SMTP Username</label>
+                            <input type="email" class="form-control form-control-sm" asp-for="SmtpUsername" placeholder="Enter SMTP username">
+                            <span asp-validation-for="SmtpUsername" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">SMTP Password</label>
+                            <input type="password" class="form-control form-control-sm" asp-for="SmtpPassword" placeholder="Enter SMTP password">
+                            <span asp-validation-for="SmtpPassword" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">From Email Address</label>
+                            <input type="email" class="form-control form-control-sm" asp-for="FromEmail" placeholder="Enter from email address">
+                            <span asp-validation-for="FromEmail" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">From Name</label>
+                            <input type="text" class="form-control form-control-sm" asp-for="FromName" placeholder="Enter from name">
+                            <span asp-validation-for="FromName" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Enable SSL/TLS</label>
+                            <select class="form-select form-select-sm" asp-for="EnableSsl">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                            <span asp-validation-for="EnableSsl" class="text-danger small"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Email Notifications -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-bell text-warning me-2"></i>Notification Settings
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sendInvoiceEmails" checked>
+                            <label class="form-check-label small fw-medium" for="sendInvoiceEmails">
+                                Send invoice emails automatically
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sendReminderEmails" checked>
+                            <label class="form-check-label small fw-medium" for="sendReminderEmails">
+                                Send payment reminder emails
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sendServiceReminders" checked>
+                            <label class="form-check-label small fw-medium" for="sendServiceReminders">
+                                Send service appointment reminders
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sendLowStockAlerts">
+                            <label class="form-check-label small fw-medium" for="sendLowStockAlerts">
+                                Send low stock alerts
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Test Configuration -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-play-circle text-info me-2"></i>Test Configuration
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label small fw-medium">Test Email Address</label>
+                        <input type="email" class="form-control form-control-sm" id="testEmailAddress" placeholder="Enter email address to send test email">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-medium">&nbsp;</label>
+                        <button type="button" class="btn btn-outline-primary btn-sm w-100" onclick="testEmailConfiguration()">
+                            <i class="bi bi-envelope me-1"></i>Send Test Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Email Statistics -->
+<div class="row">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-graph-up text-success me-2"></i>Email Statistics
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <div class="border rounded p-3 bg-light text-center">
+                            <div class="h4 text-success mb-1">95%</div>
+                            <div class="small text-muted">Delivery Rate</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border rounded p-3 bg-light text-center">
+                            <div class="h4 text-primary mb-1">1,250</div>
+                            <div class="small text-muted">Emails Sent</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border rounded p-3 bg-light text-center">
+                            <div class="h4 text-warning mb-1">2.3s</div>
+                            <div class="small text-muted">Avg. Send Time</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border rounded p-3 bg-light text-center">
+                            <div class="h4 text-info mb-1">Active</div>
+                            <div class="small text-muted">Status</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card { transition: transform 0.2s ease-in-out; }
+    .card:hover { transform: translateY(-1px); }
+    .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .form-control-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .form-select-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .form-label { font-size: 0.875rem; font-weight: 500; }
+    .form-check-label { font-size: 0.875rem; }
+</style>
+
+@section Scripts {
+    <script>
+        function testEmailConfiguration() {
+            const testEmail = document.getElementById('testEmailAddress').value;
+            if (!testEmail) {
+                alert('Please enter a test email address');
+                return;
+            }
+
+            // Show loading state
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="bi bi-hourglass-split me-1"></i>Testing...';
+            button.disabled = true;
+
+            fetch('/Settings/TestEmail', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ emailAddress: testEmail })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlert('Test email sent successfully!', 'success');
+                } else {
+                    showAlert('Test email failed: ' + data.message, 'danger');
+                }
+            })
+            .catch(error => {
+                showAlert('Test email error: ' + error.message, 'danger');
+            })
+            .finally(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            });
+        }
+
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.insertBefore(alertDiv, document.body.firstChild);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+    </script>
+} 

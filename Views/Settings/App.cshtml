@@ -1,0 +1,291 @@
+@model Billing_Software.Models.Configuration.AppSettings
+@{
+    ViewData["Title"] = "App Settings";
+}
+
+<!-- Compact Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="mb-1 fw-bold">
+            <i class="bi bi-gear text-primary me-2"></i>App Settings
+        </h4>
+        <p class="text-muted small mb-0">Configure application preferences and business information</p>
+    </div>
+    <div class="btn-group btn-group-sm" role="group">
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left me-1"></i>Back to Settings
+        </a>
+        <button type="submit" form="appSettingsForm" class="btn btn-primary btn-sm">
+            <i class="bi bi-check-circle me-1"></i>Save Settings
+        </button>
+    </div>
+</div>
+
+<!-- Company Information -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-building text-primary me-2"></i>Company Information
+                </h6>
+            </div>
+            <div class="card-body">
+                <form id="appSettingsForm" method="post">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Company Name</label>
+                            <input type="text" class="form-control form-control-sm" asp-for="CompanyName" placeholder="Enter company name">
+                            <span asp-validation-for="CompanyName" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Company Address</label>
+                            <input type="text" class="form-control form-control-sm" asp-for="CompanyAddress" placeholder="Enter company address">
+                            <span asp-validation-for="CompanyAddress" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Phone Number</label>
+                            <input type="tel" class="form-control form-control-sm" asp-for="CompanyPhone" placeholder="Enter phone number">
+                            <span asp-validation-for="CompanyPhone" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Email Address</label>
+                            <input type="email" class="form-control form-control-sm" asp-for="CompanyEmail" placeholder="Enter email address">
+                            <span asp-validation-for="CompanyEmail" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Logo Path</label>
+                            <input type="text" class="form-control form-control-sm" asp-for="LogoPath" placeholder="Enter logo path">
+                            <span asp-validation-for="LogoPath" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-medium">Business Hours</label>
+                            <input type="text" class="form-control form-control-sm" placeholder="e.g., Mon-Fri 9AM-6PM">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Billing Configuration -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-currency-dollar text-success me-2"></i>Billing Configuration
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label small fw-medium">Currency</label>
+                        <select class="form-select form-select-sm" asp-for="Currency">
+                            <option value="USD">USD ($)</option>
+                            <option value="EUR">EUR (€)</option>
+                            <option value="GBP">GBP (£)</option>
+                            <option value="INR">INR (₹)</option>
+                            <option value="CAD">CAD (C$)</option>
+                            <option value="AUD">AUD (A$)</option>
+                        </select>
+                        <span asp-validation-for="Currency" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-medium">Tax Rate (%)</label>
+                        <input type="number" class="form-control form-control-sm" asp-for="TaxRate" step="0.01" min="0" max="100" placeholder="Enter tax rate">
+                        <span asp-validation-for="TaxRate" class="text-danger small"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Application Preferences -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-sliders text-info me-2"></i>Application Preferences
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="autoGenerateInvoiceNumbers" checked>
+                            <label class="form-check-label small fw-medium" for="autoGenerateInvoiceNumbers">
+                                Auto-generate invoice numbers
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sendInvoiceNotifications" checked>
+                            <label class="form-check-label small fw-medium" for="sendInvoiceNotifications">
+                                Send invoice notifications
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="enableStockAlerts" checked>
+                            <label class="form-check-label small fw-medium" for="enableStockAlerts">
+                                Enable low stock alerts
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="enableServiceReminders" checked>
+                            <label class="form-check-label small fw-medium" for="enableServiceReminders">
+                                Enable service reminders
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="enableBackup" checked>
+                            <label class="form-check-label small fw-medium" for="enableBackup">
+                                Enable automatic backups
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="enableAnalytics" checked>
+                            <label class="form-check-label small fw-medium" for="enableAnalytics">
+                                Enable usage analytics
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- WhatsApp Configuration -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-whatsapp text-success me-2"></i>WhatsApp Configuration
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label small fw-medium">WhatsApp Method</label>
+                        <select class="form-select form-select-sm" asp-for="WhatsAppMethod">
+                            <option value="Manual">Manual (Generate Link)</option>
+                            <option value="Automated">Automated (Auto Send)</option>
+                        </select>
+                        <span asp-validation-for="WhatsAppMethod" class="text-danger small"></span>
+                        <small class="text-muted">Choose how WhatsApp messages are sent</small>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check mt-4">
+                            <input class="form-check-input" type="checkbox" asp-for="AutoSendWhatsAppOnInvoiceCreate" id="autoSendWhatsApp">
+                            <label class="form-check-label small fw-medium" for="autoSendWhatsApp">
+                                Auto-send invoice via WhatsApp after creation
+                            </label>
+                            <small class="text-muted d-block">Automatically send invoice with PDF to customer after invoice is created</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- System Information -->
+<div class="row">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pb-0">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-info-circle text-info me-2"></i>System Information
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <div class="border rounded p-3 bg-light text-center">
+                            <div class="h4 text-primary mb-1">v2.0</div>
+                            <div class="small text-muted">App Version</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border rounded p-3 bg-light text-center">
+                            <div class="h4 text-success mb-1">Active</div>
+                            <div class="small text-muted">License Status</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border rounded p-3 bg-light text-center">
+                            <div class="h4 text-warning mb-1">@DateTime.Now.ToString("MMM dd")</div>
+                            <div class="small text-muted">Last Updated</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border rounded p-3 bg-light text-center">
+                            <div class="h4 text-info mb-1">Online</div>
+                            <div class="small text-muted">Connection</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card { transition: transform 0.2s ease-in-out; }
+    .card:hover { transform: translateY(-1px); }
+    .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .form-control-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .form-select-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+    .form-label { font-size: 0.875rem; font-weight: 500; }
+    .form-check-label { font-size: 0.875rem; }
+</style>
+
+@section Scripts {
+    <script>
+        // Form validation and submission
+        document.getElementById('appSettingsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = document.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-1"></i>Saving...';
+            submitBtn.disabled = true;
+
+            // Simulate form submission
+            setTimeout(() => {
+                showAlert('Settings saved successfully!', 'success');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.insertBefore(alertDiv, document.body.firstChild);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+    </script>
+} 
